@@ -1,0 +1,49 @@
+// primevue
+@use "primeflex/primeflex.css";
+@use "primeicons/primeicons.css";
+
+// app css
+@use "utilities/variables";
+@use "components/input";
+@use "components/otp-input";
+@use "components/toast";
+@use "components/card";
+@use "components/table";
+@use "components/button";
+@use "components/dropdown";
+@use "components/texts";
+@use "components/rating";
+@use "components/drawer";
+@use "components/slider";
+@use "components/dialog";
+@use "components/generalPicker";
+@use "components/datePicker";
+@use "components/carousel";
+@use "layouts/login";
+@use "layouts/default";
+@use "utilities/font";
+body {
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 16px;
+  scroll-behavior: smooth;
+  font-family: "Arial";
+  .p-component {
+    font-size: 16px;
+    font-family: "Arial";
+  }
+}
+
+p {
+  margin: 0;
+  font-family: "Arial";
+  font-size: 14px;
+  color: #1a1a29;
+  font-weight: 10;
+}
+
+button {
+  &:focus {
+    box-shadow: none !important;
+  }
+}

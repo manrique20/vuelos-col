@@ -1,0 +1,119 @@
+/* Colors: */
+$instruction: #3b6be8;
+$info-messages: #edb724;
+$error-messages: #ff5d5d;
+$confirmation-messages: #36a815;
+$primary-1: #ffce00;
+$primary-2: rgb($primary-1, 0.8);
+$primary-3: rgb($primary-1, 0.6);
+$primary-4: rgb($primary-1, 0.4);
+$primary-5: rgb($primary-1, 0.2);
+$secondary: #0f0f68;
+$secondary-1: rgb($secondary, 0.8);
+$secondary-2: rgb($secondary, 0.6);
+$secondary-3: rgb($secondary, 0.4);
+$secondary-4: rgb($secondary, 0.2);
+$color-white: #ffffff;
+$color-black: #000000;
+$color-black-1: #242438;
+$color-black-2: #323436;
+$color-eb1c24: #eb1c24;
+$color-black-3: #d7dae2;
+$color-003676: #003676;
+$color-bfbfbf: #bfbfbf;
+$color-f8f8f8: #f8f8f8;
+$color-dce2ed: #dce2ed;
+$color-343739: #343739;
+$color-gray-1: #a5acb6;
+$color-f5f6fa: #f5f6fa;
+$color-ededf1: #ededf1;
+$color-8a8aa3: #8a8aa3;
+$color-575e6b: #575e6b;
+$color-1a1a29: #1a1a29;
+$color-1a4b84: #1a4b84;
+$color-25282b: #25282b;
+$color-2b72fb: #2b72fb;
+$color-f55c08: #f55c08;
+$button-disabled-color: #e0e1e9;
+$border-color-otp: #cacccf;
+$bg-main: #fafafa;
+
+$font-size-13: 13px;
+$font-size-14: 14px;
+$font-size-15: 15px;
+$font-size-16: 16px;
+$font-size-18: 18px;
+$font-size-20: 20px;
+$font-size-24: 24px;
+$font-size-32: 32px;
+$font-size-40: 40px;
+$font-size-63: 63px;
+
+$line-spacing-17: 17px;
+$line-spacing-18: 18px;
+$line-spacing-20: 20px;
+$line-spacing-22: 22px;
+$line-spacing-24: 24px;
+$line-spacing-35: 35px;
+$line-spacing-36: 36px;
+$line-spacing-40: 40px;
+$line-spacing-57: 57px;
+$line-spacing-90: 90px;
+
+.h1 {
+  font-size: $font-size-63;
+  letter-spacing: 0;
+}
+
+.h2 {
+  font-size: $font-size-40;
+  letter-spacing: 0;
+}
+
+.h3 {
+  font-size: $font-size-32;
+  letter-spacing: 0;
+}
+
+.h4 {
+  font-size: $font-size-24;
+  letter-spacing: 0;
+}
+
+.h5 {
+  font-size: $font-size-24;
+  letter-spacing: 0;
+}
+
+.h6 {
+  font-size: $font-size-24;
+  letter-spacing: 0;
+}
+
+.h7 {
+  font-size: $font-size-20;
+  letter-spacing: 0;
+}
+
+.span-text {
+  font-size: $font-size-16;
+  letter-spacing: 0;
+}
+
+.color-h {
+  color: $color-1a1a29;
+}
+.color-white {
+  color: $color-white;
+}
+.color-gray {
+  color: $color-575e6b;
+}
+
+.color-app-secondary {
+  color: $secondary;
+}
+
+.tracking-16 {
+  letter-spacing: 0.16;
+}

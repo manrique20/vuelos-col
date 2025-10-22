@@ -1,0 +1,74 @@
+@font-face {
+  font-family: "arial-mt-regular";
+  src: url("/fonts/Arial_Mt_Regular.ttf");
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Arial-Mt-Bold-Regular";
+  src: url("/fonts/Arial_Mt_Bold_Regular.ttf");
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "arial-italic";
+  src: url("/fonts/Arial_Italic.ttf");
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "arial-medium";
+  src: url("/fonts/Arial_Medium.ttf");
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "arial-bold";
+  src: url("/fonts/Arial_Bold.ttf");
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Arial";
+  src: url("/fonts/Arial_Normal.ttf");
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "impact";
+  src: url("/fonts/impact.ttf");
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Arial-Regular";
+  src: url("/fonts/Arial_Regular.ttf");
+  font-display: swap;
+  font-style: normal;
+}
+.app-font-arial-mt-regular {
+  font-family: "arial-mt-regular" !important;
+}
+.app-font-arial-met-bold-regular {
+  font-family: "Arial-Mt-Bold-Regular" !important;
+}
+
+.app-font-arial-italic {
+  font-family: "arial-italic" !important;
+}
+
+.app-font-arial-medium {
+  font-family: "arial-medium" !important;
+}
+.app-font-arial-normal {
+  font-family: "Arial" !important;
+}
+.app-font-impact {
+  font-family: "impact" !important;
+}
+.app-font-arial-bold {
+  font-family: "arial-bold" !important;
+}
+.app-font-arial-regular {
+  font-family: "Arial-Regular" !important;
+}

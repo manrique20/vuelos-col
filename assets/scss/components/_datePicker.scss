@@ -1,0 +1,24 @@
+@use "../utilities/variables" as *;
+.general-date {
+  &.filter {
+    .p-datepicker {
+      input {
+        height: 40px;
+        width: 181px;
+        border-radius: 20px;
+        border-color: transparent;
+        padding-bottom: 10px;
+        font-size: $font-size-14;
+        &::placeholder {
+          font-size: $font-size-15;
+          color: $color-bfbfbf;
+          font-family: "arial-italic";
+        }
+
+        &:enabled:focus {
+          border-color: $color-black-3;
+        }
+      }
+    }
+  }
+}

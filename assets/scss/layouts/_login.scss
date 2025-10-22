@@ -1,0 +1,184 @@
+@use "../utilities/variables" as *;
+
+.login-page {
+  background: $color-f5f6fa;
+  min-height: 100dvh;
+  height: auto;
+  overflow-y: auto;
+
+  .logo-brand-login {
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 45px;
+    top: 0;
+    left: 0;
+
+    img {
+      width: 100%;
+      max-width: 152px;
+      object-fit: contain;
+    }
+  }
+
+  .content-page {
+    min-height: 100vh;
+
+    background-color: $color-white;
+  }
+  .bg-container-password {
+    position: absolute;
+    width: 100%;
+    padding-left: 350px;
+    max-width: 75%;
+    height: 100%;
+    background-color: #003676;
+    clip-path: polygon(4.55% 0, 100% 0, 100% 100%, 0 100%);
+    right: 0;
+    z-index: 2;
+    @media (max-width: 768px) {
+      clip-path: polygon(0 0, 100% 4.55%, 100% 100%, 0 100%);
+      width: 100%;
+      height: calc(100dvh - 140px);
+      max-width: 100%;
+      padding-left: 0;
+      margin-top: 140px;
+    }
+  }
+  .card-login-container {
+    width: 75%;
+    position: relative;
+    margin-left: auto;
+    height: 100dvh;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 64px;
+    z-index: 3;
+    @media (max-width: 768px) {
+      width: 100%;
+      min-height: 452px;
+      padding: 30px;
+    }
+    .card-login {
+      margin: auto;
+      height: 100%;
+      width: 100%;
+      max-width: 593px;
+      background: transparent;
+      border-radius: 32px;
+      border: none;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .forgot-container-link {
+        width: 100%;
+        display: flex;
+        flex-direction: row-reverse;
+        height: 35px;
+        align-items: flex-end;
+
+        .forgot-password-link {
+          cursor: pointer;
+          font-size: $font-size-16;
+          font-family: "arial-medium";
+          color: $color-white;
+          text-decoration: underline;
+          letter-spacing: 0px;
+        }
+      }
+
+      .p-card-body {
+        padding: 0;
+      }
+
+      .pie {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .number {
+          position: relative;
+          z-index: 10;
+          font-size: 18px;
+          color: $color-25282b;
+          font-family: "app-font-semibold";
+        }
+        .shadow {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          background-color: transparent;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .left-side,
+        .right-side {
+          display: none;
+        }
+      }
+    }
+
+    &.recover-password {
+      position: relative;
+      background-image: none;
+      background-color: transparent;
+      .p-card-body {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+  .card-img-container {
+    z-index: 1;
+    position: absolute;
+    height: 100%;
+    min-width: 384px;
+    width: 25%;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    @media (max-width: 768px) {
+      width: 100%;
+      min-width: 100%;
+      top: 0;
+      height: 195px;
+    }
+    .card-image {
+      width: 251px;
+      height: 82px;
+      background-image: url("/img/ic_onboarding_image.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+  .back-icon {
+    border-radius: 50%;
+    background-color: #1a4b84;
+    width: 27px;
+    height: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 24px;
+    i {
+      font-size: 11px;
+      font-weight: bolder;
+      cursor: pointer;
+      color: $color-white;
+    }
+  }
+}

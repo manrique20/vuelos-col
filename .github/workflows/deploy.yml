@@ -1,0 +1,39 @@
+name: Deploy Frontend
+
+on:
+  push:
+    branches:
+      - staging
+      - development
+      - production
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.17.0
+          cache: "npm"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Project
+        run: npm run generate:${{ github.ref_name }}
+
+      - name: Setup Remote SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 400 ~/.ssh/id_rsa
+          ssh-keyscan ${{ secrets.SERVER }} >> ~/.ssh/known_hosts
+
+      - name: Copy Files with SCP (Manual)
+        run: |
+          scp -r -o StrictHostKeyChecking=no .output/public/* ${{ secrets.USER }}@${{ secrets.SERVER }}:/home/${{ vars.PROJECT }}/${{ vars.FOLDER }}/

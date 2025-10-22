@@ -1,0 +1,122 @@
+@use "../utilities/variables" as *;
+.app-general-button {
+  border-radius: 14px !important;
+  padding: 11px 0;
+  .p-button-label {
+    letter-spacing: 0.16px;
+    font-family: "arial-mt-regular";
+  }
+
+  &.dialog-button-full {
+    border-radius: 0px 0px 16px 16px;
+  }
+}
+
+.app-general-button.app-btn-transparent {
+  background: transparent !important;
+  border-color: transparent !important;
+  &:hover {
+    background: transparent !important;
+    border-color: transparent !important;
+  }
+  .p-button-label {
+    color: $color-1a1a29 !important;
+    text-decoration: underline !important;
+  }
+  &.black{
+    justify-content: flex-start;
+    .p-button-label {
+      color: $color-black !important;
+      font-family: "Arial";
+      text-decoration: none !important;
+      font-size: 16px !important;
+    }
+  }
+  &.lined{
+    justify-content: flex-start;
+    .p-button-label {
+      color: $color-bfbfbf !important;
+      font-family: "arial-medium";
+      text-decoration: underline !important;
+      font-size: 16px !important;
+    }
+  }
+}
+
+.app-general-button.app-btn-primary {
+  background: $color-eb1c24 !important;
+  border-color: $color-eb1c24 !important;
+  &:hover {
+    background: $color-eb1c24 !important;
+    border-color: $color-eb1c24 !important;
+  }
+  .p-button-label {
+    color: $color-white !important;
+    font-size: $font-size-16 !important;
+  }
+  i {
+    color: $color-black-1 !important;
+  }
+}
+.app-general-button.app-btn-secondary {
+  background: $color-eb1c24;
+  border-color: $color-eb1c24;
+  &:hover {
+    background: $color-eb1c24;
+    border-color: $color-eb1c24;
+  }
+  .p-button-label {
+    color: #fbfbfb;
+  }
+  i {
+    color: $color-black-1;
+  }
+}
+.app-general-button.app-btn-see-more {
+  background: $color-1a4b84 !important;
+  border-color: $color-1a4b84 !important;
+  &:hover {
+    background: $color-1a4b84 !important;
+    border-color: $color-1a4b84 !important;
+  }
+}
+.app-general-button.app-btn-black-border {
+  background: transparent;
+  border-color: $color-black-1;
+  &:hover {
+    background: transparent;
+    border-color: $color-black-1;
+  }
+  .p-button-label {
+    color: $color-black-1;
+  }
+}
+
+.app-general-button.app-btn-disabled {
+  background: $button-disabled-color !important;
+  border-color: $button-disabled-color !important;
+  &:hover {
+    background: $button-disabled-color !important;
+    border-color: $button-disabled-color !important;
+  }
+  .p-button-label {
+    color: $color-8a8aa3 !important;
+  }
+}
+.app-general-button.app-btn-file {
+  width: 39px;
+  height: 39px;
+  border-radius: 50% !important;
+  background: $color-white !important;
+  border-color: $color-white !important;
+  &:hover {
+    background: $color-white !important;
+    border-color: $color-white !important;
+  }
+  .p-button-icon{
+    background-color: $color-003676 !important;
+    border-color: $color-003676;
+    padding: 6px;
+    border-radius: 50%;
+  }
+}

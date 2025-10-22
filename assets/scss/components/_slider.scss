@@ -1,0 +1,13 @@
+.general-slider {
+  &.login {
+    width: 252px;
+    .p-slider {
+      .p-slider-range {
+        background: #eb1c24;
+      }
+      .p-slider-handle {
+        display: none;
+      }
+    }
+  }
+}

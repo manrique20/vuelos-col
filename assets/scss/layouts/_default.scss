@@ -1,0 +1,106 @@
+@use "../utilities/variables" as *;
+.app-wraper {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-sizing: border-box;
+
+  .header-content {
+    width: 100%;
+    background-color: $color-003676;
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: 768px) {
+      padding: 12px 20px;
+    }
+    .pages-links {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-family: "Arial";
+      @media (max-width: 768px) {
+        display: none;
+      }
+      .link {
+        position: relative;
+
+        color: $color-white;
+        font-family: "Arial";
+        text-decoration: none;
+        cursor: pointer;
+        &.active {
+          font-family: "Arial-Bold";
+          &::after {
+            content: "";
+            z-index: 40;
+            transform: scaleX(1) translateX(-50%);
+            transform-origin: bottom left;
+          }
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          width: 70%;
+          transform: scaleX(0) translateX(-50%);
+          height: 3px;
+          bottom: -19px;
+          left: 50%;
+          z-index: 40;
+          transition: transform 0.25s ease-out;
+          background-color: #eb1c24;
+        }
+        &:not(.active):hover {
+          opacity: 0.8;
+          &::after {
+            transform: scaleX(1) translateX(-50%);
+            z-index: 40;
+            transform-origin: bottom left;
+          }
+        }
+      }
+    }
+    .icon-responsive {
+      display: none;
+      @media (max-width: 768px) {
+        display: block;
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: white;
+      }
+    }
+  }
+  .main-application {
+    width: 100%;
+    height: 100%;
+    background-color: #fafafa;
+
+    .content-application {
+      position: relative;
+      min-height: calc(100dvh - 56px);
+      background-color: #fafafc;
+      .content-page {
+        padding: 40px;
+        height: 100%;
+        .general-filter {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          gap: 1rem;
+          margin-bottom: 1rem;
+          .filter-section {
+            display: flex;
+            gap: 8px;
+          }
+        }
+        &.favorites {
+          width: 840px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    }
+  }
+}

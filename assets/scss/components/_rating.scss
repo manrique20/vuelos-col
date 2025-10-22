@@ -1,0 +1,14 @@
+.general-rating {
+  .p-rating {
+    &.p-disabled {
+      opacity: 100;
+    }
+    .p-rating-option {
+      &.p-rating-option-active {
+        svg {
+          color: #fed000 !important;
+        }
+      }
+    }
+  }
+}

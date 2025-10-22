@@ -1,0 +1,126 @@
+@use "../utilities/variables" as *;
+.app-container-table {
+  .table-project {
+    border-radius: 5px;
+    background-color: white;
+    cursor: default;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    .p-datatable-header-cell {
+      background: $color-dce2ed;
+      border-bottom: 2px solid $color-f5f6fa !important;
+      &:not(:last-child) {
+        border-right: 2px solid $color-white;
+      }
+      .p-datatable-column-header-content {
+        .p-datatable-column-title {
+          text-align: center !important;
+          width: 100%;
+        }
+        .p-badge {
+          display: none;
+        }
+      }
+    }
+    thead {
+      tr th span {
+        color: $color-1a1a29;
+        font-size: $font-size-13;
+        font-family: "arial-bold";
+        font-weight: 10;
+        padding: 0.5rem 0;
+      }
+      tr {
+        th:first-child {
+          padding-left: 40px;
+          border-radius: 10px 0px 0px 0px;
+        }
+        th:last-child {
+          padding-right: 40px;
+          border-radius: 0px 10px 0px 0px;
+        }
+      }
+    }
+    .p-datatable-tbody > tr {
+      background: $color-white;
+    }
+    tbody {
+      padding: 10px !important;
+
+      a,
+      p,
+      span {
+        font-size: $font-size-13;
+        color: $color-1a1a29;
+        font-family: "Arial";
+        text-align: center;
+      }
+      tr td {
+        border-bottom: 2px solid $color-f5f6fa !important;
+        &:not(:last-child) {
+          border-right: 2px solid $color-f5f6fa;
+        }
+      }
+      tr:last-child td {
+        border-bottom: none !important;
+      }
+      tr:hover {
+        background-color: #f7f7f7 !important;
+      }
+      tr {
+        td:first-child {
+          padding-left: 40px;
+          border-radius: 10px 0px 0px 10px;
+        }
+        td:last-child {
+          padding-right: 40px;
+          border-radius: 0px 10px 10px 0px;
+        }
+      }
+    }
+
+    .color-p-black {
+      color: $color-25282b;
+      font-family: "app-font-medium";
+    }
+
+    .rectangular-img {
+      max-width: 140px;
+      max-height: 68px;
+      border-radius: 5px;
+    }
+    .principal-title {
+      color: #1a1a29;
+    }
+    .text-truncated {
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #loading-text {
+      text-align: center;
+    }
+    .p-component-overlay {
+      background-color: rgba(162, 162, 162, 0.5);
+      i {
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  .p-paginator {
+    background-color: transparent;
+    justify-content: flex-end;
+    .p-paginator-element {
+      background-color: white;
+      color: #000000;
+      font-weight: 500;
+    }
+    .p-highlight {
+      background: #ebebeb !important;
+      background-color: #ebebeb !important;
+      color: #000000 !important;
+    }
+  }
+}

@@ -1,0 +1,64 @@
+@use '../utilities/variables' as *;
+.p-toast.p-toast-bottom-center {
+  bottom: 0 !important;
+  width: 100% !important;
+  max-width: 550px;
+}
+.p-toast-message {
+  margin: 0;
+  margin-top: 1rem;
+  border-radius: 8px 8px 0px 0px;
+  color: $color-white !important;
+  font-size: $font-size-13 !important;
+  .p-toast-message-content {
+    position: relative;
+    padding: 12px 14px !important;
+    display: flex;
+    align-items: center;
+  }
+  .p-toast-close-icon {
+    display: none;
+  }
+  .p-toast-detail {
+    font-weight: 100 !important;
+    margin: 0 !important;
+  }
+  .p-toast-message-icon {
+    width: 60px;
+    display: block;
+    &::before {
+      content: '';
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+  .p-toast-message-text {
+    margin: 0 1rem 0 1rem !important;
+  }
+}
+
+.p-toast-message-error {
+  background: $error-messages !important;
+  .p-toast-message-icon::before {
+    background-image: url('/icons/ic_error.svg');
+  }
+  .p-toast-detail {
+    color: $color-white !important;
+  }
+}
+
+.p-toast-message-success {
+  background: $confirmation-messages !important;
+  .p-toast-message-icon::before {
+    background-image: url('/icons/ic_success.svg');
+  }
+  .p-toast-detail {
+    color: $color-white !important;
+  }
+}

@@ -1,0 +1,97 @@
+@use "../utilities/variables" as *;
+.general-input {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: $font-size-16;
+  color: $color-1a1a29;
+  input {
+    width: 100%;
+    border: none;
+  }
+}
+
+.general-input.solo-login {
+  label {
+    font-size: $font-size-13;
+    font-family: "arial-bold";
+    color: $color-f8f8f8;
+    font-weight: normal;
+  }
+  input {
+    background: $color-f5f6fa;
+    border-radius: 14px;
+    padding: 12px 15px;
+    height: 42px;
+
+    &::placeholder {
+      font-size: $font-size-16;
+      color: $color-bfbfbf;
+      font-family: "arial-italic";
+    }
+  }
+  .p-inputgroup{
+        background: $color-f5f6fa;
+    border-radius: 14px !important;
+    input {
+      background: none !important;
+      border-radius: none !important;
+    }
+  }
+}
+
+.general-input.filter {
+  input {
+    border-radius: 14px;
+    background: $color-white;
+    padding: 10px 23px;
+    border: none;
+
+    &::placeholder {
+      font-size: $font-size-15;
+      color: $color-bfbfbf;
+      font-family: "arial-italic";
+    }
+    &:hover {
+      border-color: $color-black-3;
+    }
+    &:enabled:focus {
+      border-color: $color-black-3;
+    }
+  }
+}
+
+.general-input.solo-form {
+  label {
+    color: $color-1a1a29;
+    font-family: "arial-bold";
+    font-size: $font-size-13;
+  }
+  input {
+    border-radius: 14px;
+    background: $color-f5f6fa;
+    padding: 10px 23px;
+    border: none;
+    font-size: $font-size-16;
+
+    &::placeholder {
+      font-size: $font-size-16;
+      color: $color-bfbfbf;
+      font-family: "arial-italic";
+    }
+    &:hover {
+      border-color: $color-black-3;
+    }
+    &:enabled:focus {
+      border-color: $color-black-3;
+    }
+  }
+    .p-inputgroup{
+        background: $color-f5f6fa;
+    border-radius: 14px !important;
+    input {
+      background: none !important;
+      border-radius: none !important;
+    }
+  }
+}

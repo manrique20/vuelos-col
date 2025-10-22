@@ -1,0 +1,124 @@
+@use "../utilities/variables" as *;
+.general-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  .container-image {
+    background: #0babf21a;
+    border: 1px dashed $primary-1;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    &::after {
+      content: "";
+      background-image: url("/icons/ic_upload.svg");
+      background-repeat: no-repeat;
+      width: 50px;
+      height: 50px;
+    }
+  }
+  .add-image-preview {
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: var(--backgroundImag);
+    background-color: $color-white;
+    display: flex;
+    background-color: #ffffff;
+    align-items: flex-end;
+    justify-content: flex-end;
+    .change-label {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      span {
+        color: $color-white;
+        font-family: "poppins-semibold";
+        text-decoration: underline;
+        font-size: 14px;
+      }
+    }
+  }
+  .container-text {
+    label {
+      font-size: $font-size-14;
+      font-family: "app-font-heavy";
+      color: $color-1a1a29;
+    }
+    p {
+      color: $color-gray-1;
+      font-size: $font-size-13;
+      margin-top: 4px;
+      margin-bottom: 12px;
+    }
+  }
+  .advice {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+    gap: 10px;
+    border-radius: 10px;
+    img.not-image {
+      width: 29px;
+      height: 22px;
+    }
+    .title-change {
+      font-family: "poppins-semibold";
+      color: $color-white;
+      font-size: $font-size-14;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
+.drop-active {
+  .container-image {
+    background-color: #9fd7efa8;
+  }
+  .select-document {
+    background-color: #9fd7efa8;
+  }
+  .container-image,
+  .select-document {
+    transition: 0.2s;
+  }
+}
+
+.general-picker.deleted-file {
+  .img-hover-delete {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      &::after {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: rgb($color-1a1a29, 0.7);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+      }
+
+      .action-deleted {
+        position: relative;
+        display: block !important;
+        z-index: 1000;
+        cursor: pointer;
+      }
+    }
+  }
+}

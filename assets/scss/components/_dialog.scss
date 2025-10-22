@@ -1,0 +1,73 @@
+@use "../utilities/variables" as *;
+.general-dialog {
+  background: $color-white !important;
+  border-radius: 16px !important;
+
+  .p-dialog-content {
+    padding: 0 24px;
+    padding-bottom: 24px;
+    .border-line {
+      margin-top: 20px;
+      width: 100%;
+      height: 2px;
+      background-color: #dbdbdb;
+    }
+  }
+  .p-dialog-header,
+  .dialog-header {
+    padding: 24px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .title-dialog {
+      margin: 0;
+      color: $color-1a1a29;
+      font-family: "arial-bold";
+      font-size: $font-size-24;
+    }
+
+    .close-modal {
+      position: absolute !important;
+      cursor: pointer;
+      top: 13px;
+      right: 13px;
+      background: #bfbfbf;
+      border-radius: 50%;
+      padding: 0;
+      width: 25px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      i {
+        color: $color-white;
+      }
+    }
+  }
+
+  .content-dialog {
+    padding: 0 24px;
+    padding-bottom: 24px;
+    .text {
+      color: $color-343739;
+      font-size: 16px;
+    }
+  }
+  .p-dialog-footer {
+    padding: 0;
+  }
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+}
+
+.p-dialog-mask.p-overlay-mask {
+  background: $color-black;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}

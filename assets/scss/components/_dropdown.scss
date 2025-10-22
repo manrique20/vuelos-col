@@ -1,0 +1,114 @@
+@use "../utilities/variables" as *;
+.general-dropwdown {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  .p-select {
+    width: 100%;
+  }
+}
+.general-dropwdown.solo-login {
+  label {
+    font-size: $font-size-16;
+    font-family: "app-font-medium";
+    color: $color-1a1a29;
+  }
+
+  .p-select {
+    background: $color-f5f6fa;
+    border-radius: 4px;
+    &::placeholder {
+      font-size: $font-size-16;
+      color: $color-8a8aa3;
+    }
+
+    .p-select-label {
+      padding: 12px 15px;
+      .p-placeholder {
+        font-size: $font-size-16;
+        color: $color-8a8aa3;
+      }
+    }
+  }
+}
+
+.general-dropwdown.filter {
+  .p-select {
+    border: none;
+    background: $color-white;
+    border-radius: 14px;
+    .p-select-label {
+      padding: 10px 15px;
+      &.p-placeholder {
+        font-size: $font-size-15;
+        color: $color-bfbfbf;
+        font-family: "arial-italic";
+      }
+    }
+    .p-select-dropdown {
+      svg {
+        color: $color-bfbfbf;
+      }
+    }
+
+    &:not(.p-disabled).p-focus {
+      border-color: $color-black-3;
+    }
+  }
+}
+
+.general-dropdown.detail-status {
+  &.table {
+    .p-select {
+      width: fit-content;
+      border: none;
+      box-shadow: none;
+      border-radius: 13px;
+      height: 26px;
+      width: 112px;
+      font-size: $font-size-13;
+      span {
+        padding: 4px 8px 3px 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      &.active {
+        background-color: rgba($confirmation-messages, 0.2);
+      }
+      &.inactive {
+        background-color: rgba($error-messages, 0.2);
+      }
+      .p-select-dropdown {
+        .icon-dropdown {
+          font-size: 12px;
+          &.active {
+            color: $confirmation-messages;
+          }
+          &.inactive {
+            color: $error-messages;
+          }
+        }
+      }
+    }
+    &.active {
+      span {
+        color: $confirmation-messages;
+      }
+    }
+    &.inactive {
+      span {
+        color: $error-messages;
+      }
+    }
+  }
+}
+
+.p-select-list-container {
+  ul.p-select-list:has(.selected-option) {
+    li:has(.not-option) {
+      padding: 0;
+    }
+  }
+}
