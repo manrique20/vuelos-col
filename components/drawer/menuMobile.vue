@@ -92,6 +92,11 @@ watch(userData, async (newVal) => {
           :to="localePath({ name: 'login' })"
           >{{ t("menu.login") }}
         </nuxt-link>
+          <Button
+          class="app-general-button app-btn-primary"
+          :label="t('menu.register')"
+          @click="router.push(localePath({ name: 'register' }))"
+        />
       </div>
     </Drawer>
   </div>
