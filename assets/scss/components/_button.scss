@@ -44,11 +44,12 @@
 }
 
 .app-general-button.app-btn-primary {
-  background: $color-eb1c24 !important;
-  border-color: $color-eb1c24 !important;
+  @apply tw-px-5;
+  background: $color-black !important;
+  border-color: $color-black !important;
   &:hover {
-    background: $color-eb1c24 !important;
-    border-color: $color-eb1c24 !important;
+    background: $color-black !important;
+    border-color: $color-black !important;
   }
   .p-button-label {
     color: $color-white !important;

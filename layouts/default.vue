@@ -43,89 +43,67 @@ watch(
   <div class="app-wraper">
     <header class="header-content">
       <img
-        src="/img/ic_page_logo.svg"
+        src="/icons/ic_logo-header.svg"
         alt="logo"
-        width="81px"
-        height="24px"
+        width="70px"
+        height="70px"
         class="cursor-pointer"
         @click="router.push(localePath({ name: 'home' }))"
       />
-
+      <div class="pages-links">
+          <nuxt-link
+          class="link"
+          :class="{
+            active: route.path.includes('administrator'),
+          }"
+          :to="localePath({ name: 'administrator' })"
+        >
+          {{ $t("menu.administrator") }}
+        </nuxt-link>
+        <nuxt-link
+          class="link"
+          :class="{
+            active: route.path.includes('home'),
+          }"
+          :to="localePath({ name: 'home' })"
+        >
+          {{ $t("menu.searchFlights") }}
+        </nuxt-link>
+        <nuxt-link
+          :class="{
+            active: route.path.includes('my-reservations'),
+          }"
+          class="link"
+          :to="localePath({ name: 'my-reservations' })"
+        >
+          {{ $t("menu.myReservations") }}
+        </nuxt-link>
+        <nuxt-link
+          :class="{
+            active: route.path.includes('login'),
+          }"
+          class="link"
+          :to="localePath({ name: 'login' })"
+        >
+          {{ t("menu.login") }}
+        </nuxt-link>
+        <Button
+          class="app-general-button app-btn-primary"
+          :label="t('menu.register')"
+          @click="router.push(localePath({ name: 'register' }))"
+        />
+      </div>
       <i class="pi pi-bars icon-responsive" @click="openMenu"></i>
     </header>
-    <main class="main-application" :class="{ 'hover-menu': activeHoverMenu }">
+    <main class="main-application">
       <div class="content-application">
         <slot />
       </div>
     </main>
-    <LayoutsLoginLogout
+    <!-- <LayoutsLoginLogout
       :dialog="openLogout"
       @close-modal="openLogout = false"
-    />
-    <GeneralDialog
-      v-if="showDialog"
-      v-model:show="showDialog"
-      width="559px"
-      :title="t('text.locationModal.title')"
-    >
-      <div class="content-dialog">
-        <p>
-          {{ t("text.locationModal.text") }}
-        </p>
-      </div>
-      <div class="action-buttons">
-        <Button
-          :label="t('button.notAllow')"
-          style="min-width: 151px"
-          class="app-general-button app-btn-disabled"
-          type="button"
-          @click="showDialog = false"
-        />
-        <Button
-          :label="t('button.allow')"
-          style="min-width: 151px"
-          class="app-general-button app-btn-primary"
-          type="button"
-          @click="getLocation()"
-        />
-      </div>
-    </GeneralDialog>
-    <GeneralDialog
-      v-if="openDeniedDialog"
-      v-model:show="openDeniedDialog"
-      :title="t('text.deniedPermitionsModal.title')"
-      :closable="true"
-      width="559px"
-    >
-      <div class="content-dialog">
-        <div>
-          <div class="flex gap-2">
-            <i class="pi pi-exclamation-triangle"></i>
-            <p>{{ t("text.deniedPermitionsModal.message") }}</p>
-          </div>
-
-          <div class="instructions-steps">
-            <h4>{{ t("text.deniedPermitionsModal.stepsTitle") }}</h4>
-            <ol>
-              <li>{{ t("text.deniedPermitionsModal.step1") }}</li>
-              <li>{{ t("text.deniedPermitionsModal.step2") }}</li>
-              <li>{{ t("text.deniedPermitionsModal.step3") }}</li>
-              <li>{{ t("text.deniedPermitionsModal.step4") }}</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-
-      <div class="action-buttons">
-        <Button
-          :label="t('button.understood')"
-          style="min-width: 100%"
-          class="app-general-button app-btn-primary"
-          type="button"
-          @click="openDeniedDialog = false"
-        />
-      </div>
-    </GeneralDialog>
+    /> -->
     <DrawerMenuMobile
       v-model:visible="menuMobile"
       :showUpdateDialog="menuMobile"
