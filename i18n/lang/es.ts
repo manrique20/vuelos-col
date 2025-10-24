@@ -265,8 +265,11 @@ export default {
   },
   menu: {
     logout: "Cerrar sesión",
-    searchVehicles: "Buscar vehículos",
-    favorites: "Mis favoritos",
+    searchFlights: "Buscar vuelos",
+    myReservations: "Mis reservas",
+    login: "Iniciar sesión",
+    administrator: "Administrador",
+    register: "Registrarse",
     profile: "Perfil",
     notFound: "404 - Página no encontrada",
   },

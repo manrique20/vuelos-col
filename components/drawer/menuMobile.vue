@@ -49,7 +49,7 @@ watch(userData, async (newVal) => {
       <template #header>
         <div class="header-menu flex items-center gap-2">
           <img
-            src="/img/ic_onboarding_image.svg"
+            src="/icons/ic_logo-header.svg"
             alt="logo"
             width="81px"
             height="24px"
@@ -63,45 +63,34 @@ watch(userData, async (newVal) => {
         <nuxt-link
           class="link"
           :class="{
-            active: route.path.includes(localePath({ name: 'home' })),
+            active: route.path.includes(localePath({ name: 'administrator' })),
           }"
-          :to="localePath({ name: 'home' })"
+          :to="localePath({ name: 'administrator' })"
           @click="emit('closeModal')"
-          >{{ t("menu.searchVehicles") }}
+          >{{ t("menu.administrator") }}
         </nuxt-link>
         <nuxt-link
           class="link"
           :class="{
-            active: route.path.includes(localePath({ name: 'favorites' })),
+            active: route.path.includes(localePath({ name: 'home' })),
           }"
-          :to="localePath({ name: 'favorites' })"
+          :to="localePath({ name: 'home' })"
           @click="emit('closeModal')"
-          >{{ t("menu.favorites") }}
+          >{{ t("menu.searchFlights") }}
         </nuxt-link>
         <nuxt-link
-        v-if="userData?.id"
           class="link"
-          :class="{ active: route.path.includes('profile') }"
-          :to="localePath({ name: 'profile' })"
+          :class="{ active: route.path.includes('my-reservations') }"
+          :to="localePath({ name: 'my-reservations' })"
           @click="emit('closeModal')"
-          >{{ t("menu.profile") }}
+          >{{ t("menu.myReservations") }}
         </nuxt-link>
-        <Button
-        v-if="userData?.id"
-        class="app-general-button app-btn-transparent black p-0"
-        :pt="{
-          label: 'text-s-black',
-        }"
-          @click="emit('logout')"
-          :label="t('menu.logout')"
-          >
-        </Button>
+
         <nuxt-link
-        v-else
           class="link"
-          :class="{ active: route.path.includes('profile') }"
+          :class="{ active: route.path.includes('login') }"
           :to="localePath({ name: 'login' })"
-          >{{ t("button.login") }}
+          >{{ t("menu.login") }}
         </nuxt-link>
       </div>
     </Drawer>
