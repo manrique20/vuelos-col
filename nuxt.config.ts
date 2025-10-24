@@ -15,8 +15,8 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      titleTemplate: "%s - Landing",
-      title: "AUNO",
+      titleTemplate: "%s - Website",
+      title: "Vuelos Col",
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -37,7 +37,6 @@ export default defineNuxtConfig({
       secret: process.env.SECRET_KEY,
       API_BASE_URL: process.env.API_URL,
       SHORT_NAME: process.env.SHORT_NAME,
-      googlemaps_api_key: process.env.GOOGLEMAPS_API_KEY,
     },
   },
 
@@ -62,6 +61,7 @@ export default defineNuxtConfig({
     "pinia-plugin-persistedstate/nuxt",
     "@primevue/nuxt-module",
     "@nuxt/eslint",
+    '@nuxtjs/tailwindcss',
   ],
 
   // primevue
