@@ -1,23 +1,39 @@
 @use "../utilities/variables" as *;
 .general-date {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
   &.filter {
+    @apply lg:tw-max-w-[200px] max-lg:tw-w-full;
+    label {
+      font-size: $font-size-15;
+      font-family: "Arial-Mt-Bold-Regular";
+      color: $color-1a1a29;
+    }
     .p-datepicker {
+      background-color: $color-white;
+      border-radius: 14px;
       input {
         height: 40px;
-        width: 181px;
-        border-radius: 20px;
         border-color: transparent;
         padding-bottom: 10px;
         font-size: $font-size-14;
+      border-radius: 14px;
+
         &::placeholder {
           font-size: $font-size-15;
           color: $color-bfbfbf;
           font-family: "arial-italic";
         }
 
-        &:enabled:focus {
-          border-color: $color-black-3;
-        }
+
+      }
+      .p-datepicker-dropdown {
+        background-color: $color-white;
+        border: none;
+        border-top-right-radius: 14px;
+        border-bottom-right-radius: 14px;
       }
     }
   }
