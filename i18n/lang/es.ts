@@ -14,9 +14,21 @@ export default {
     logout: "¿Estás seguro de querer cerrar la sesión?",
   },
   form: {
-    role: {
-      label: "Rol",
-      placeholder: "Selecciona",
+    origin:{
+      label: "Ciudad de origen",
+      placeholder: "Seleccione"
+    },
+    destination: {
+      label: "Ciudad de destino",
+      placeholder: "Seleccione"
+    },
+    departureDate: {
+      label: "Fecha de salida",
+      placeholder: "Seleccione una fecha"
+    },
+    arrivalDate: {
+      label: "Fecha de regreso",
+      placeholder: "Seleccione una fecha"
     },
     fullname: {
       label: "Nombre completo",
@@ -115,40 +127,11 @@ export default {
   },
   button: {
     login: "Iniciar sesión",
-    forgotPassword: "Recuperar contraseña",
-    savePassword: "Guardar contraseña",
-    sendCode: "Enviar código",
-    resendCode: "Reenviar",
-    validate: "Verificar",
-    reset: "Restablecer",
-    update: "Actualizar",
     cancel: "Cancelar",
     back: "Volver",
-    change: "Cambiar",
-    create: "Crear",
     register: "Registar",
     continue: "Continuar",
-    yes: "Si, acepto",
-    haveAccount: "Ya tengo cuenta",
-    contact: "Contactar vehículo",
-    no: "No",
-    notAllow: "No permitir",
-    allow: "Permitir",
-    seeMore: "Ver más",
-    seeInfo: "Ver información",
-    logout: "Sí, salir",
-    confirm: "Confirmar",
-    understood: "Entendido",
-    finished: "Finalizar",
-    changePassword: "Cambiar contraseña",
-    saveChanges: "Guardar cambios",
-    whatsapp: "WhatsApp",
-    phone: "Celular",
-    actions: {
-      created: {
-        admin: "Nuevo administrador",
-      },
-    },
+    search: "Buscar",
   },
   rule: {
     form: "Por favor revisa la información",

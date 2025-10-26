@@ -118,14 +118,6 @@ const onSubmit = handleSubmit(async (values: any) => {
               <GeneralInputError :error="errors['password']" />
             </span>
           </div>
-          <div class="forgot-container-link">
-            <span
-              class="forgot-password-link"
-              @click="router.push(localePath({ name: 'forgot-password' }))"
-            >
-              {{ t("button.forgotPassword") }}
-            </span>
-          </div>
           <div
             class="flex justify-content-between align-items-center mt-6 gap-2"
           >

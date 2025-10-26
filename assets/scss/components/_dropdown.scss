@@ -33,13 +33,19 @@
   }
 }
 
-.general-dropwdown.filter {
+.general-dropwdown.form {
+  @apply lg:tw-max-w-[200px] max-lg:tw-w-full;
+  label {
+    font-size: $font-size-15;
+    font-family: "Arial-Mt-Bold-Regular";
+    color: $color-1a1a29;
+  }
   .p-select {
     border: none;
     background: $color-white;
     border-radius: 14px;
     .p-select-label {
-      padding: 10px 15px;
+      @apply tw-py-2 tw-pr-4 tw-pl-10;
       &.p-placeholder {
         font-size: $font-size-15;
         color: $color-bfbfbf;
