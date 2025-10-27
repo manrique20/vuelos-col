@@ -2,4 +2,10 @@
 .general-card {
   background: #CBC6C6;
   border-radius: 20px;
+  .flights-card{
+    @apply tw-border tw-rounded-lg tw-p-4  tw-transition-shadow tw-cursor-pointer tw-bg-white;
+    &:hover {
+      @apply tw-shadow-md;
+    }
+  }
 }

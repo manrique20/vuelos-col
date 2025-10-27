@@ -90,6 +90,9 @@ export const useFormatDate = (date: string, type: string) => {
   if (type === "date-table") {
     dateFormat = parsedDate.toFormat("dd-MM-yyyy");
   }
+  if (type === "only-hour") {
+    dateFormat = parsedDate.toFormat("HH:mm");
+  }
 
   return dateFormat;
 };
