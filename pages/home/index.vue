@@ -11,7 +11,7 @@ const route = useRoute();
 const { searchFlights, searchResults, isLoading, error, calculateFinalPrice } =
   useFlightSearch();
 
-const { handleSubmit, errors, meta } = useForm({
+const { handleSubmit, errors, meta, resetForm, values } = useForm({
   validationSchema: toTypedSchema(
     z
       .object({
@@ -55,8 +55,8 @@ const onSubmit = handleSubmit(async (values: any) => {
     query: {
       origin: values.selectedOriginCity,
       destination: values.selectedDestinationCity,
-      departureDate: values.departureDate,
-      arrivalDate: values.arrivalDate,
+      departureDate: useFormatDate(values.departureDate.toISOString(), 'date-send'),
+      arrivalDate: useFormatDate(values.arrivalDate.toISOString(), 'date-send'),
     },
   });
   const results = await searchFlights({
@@ -71,7 +71,15 @@ const redirectToFlightDetails = (flight: number) => {
   router.push(localePath({ name: "home-id", params: { id: flight } }));
 };
 onMounted(() => {
-  nextTick(() => {});
+  nextTick(() => {
+    if (route.query.origin && route.query.destination && route.query.departureDate && route.query.arrivalDate) {
+      selectedOriginCity.value = String(route.query.origin);
+      selectedDestinationCity.value = String(route.query.destination);
+      departureDate.value = new Date(new Date(String(route.query.departureDate)).setDate(new Date(String(route.query.departureDate)).getDate() + 1));
+      arrivalDate.value = new Date(new Date(String(route.query.arrivalDate)).setDate(new Date(String(route.query.arrivalDate)).getDate() + 1));
+      onSubmit();
+    }
+  });
 });
 </script>
 
@@ -79,30 +87,16 @@ onMounted(() => {
   <section class="content-page">
     <Card class="general-card">
       <template #content>
-        <div
-          class="tw-flex lg:tw-justify-between max-lg:tw-flex-col tw-items-center tw-gap-6"
-        >
-          <div
-            class="tw-flex tw-items-center max-lg:tw-flex-col tw-gap-3 max-lg:tw-w-full"
-          >
+        <div class="tw-flex lg:tw-justify-between max-lg:tw-flex-col tw-items-center tw-gap-6">
+          <div class="tw-flex tw-items-center max-lg:tw-flex-col tw-gap-3 max-lg:tw-w-full">
             <span class="general-dropwdown form">
               <label> {{ t("form.origin.label") }}</label>
               <IconField>
                 <InputIcon>
-                  <img
-                    src="/icons/ic_airplane.svg"
-                    alt="airplane icon"
-                    width="15px"
-                    height="15px"
-                  />
+                  <img src="/icons/ic_airplane.svg" alt="airplane icon" width="15px" height="15px" />
                 </InputIcon>
-                <Select
-                  v-model="selectedOriginCity"
-                  :options="cities"
-                  optionLabel="name"
-                  option-value="code"
-                  :placeholder="t('form.origin.placeholder')"
-                />
+                <Select v-model="selectedOriginCity" :options="cities" optionLabel="name" option-value="code"
+                  :placeholder="t('form.origin.placeholder')" />
               </IconField>
               <GeneralInputError :error="errors['selectedOriginCity']" />
             </span>
@@ -110,34 +104,18 @@ onMounted(() => {
               <label> {{ t("form.destination.label") }}</label>
               <IconField>
                 <InputIcon>
-                  <img
-                    src="/icons/ic_airplane.svg"
-                    alt="airplane icon"
-                    width="15px"
-                    height="15px"
-                    style="transform: rotate(180deg)"
-                  />
+                  <img src="/icons/ic_airplane.svg" alt="airplane icon" width="15px" height="15px"
+                    style="transform: rotate(180deg)" />
                 </InputIcon>
-                <Select
-                  v-model="selectedDestinationCity"
-                  :options="cities"
-                  optionLabel="name"
-                  option-value="code"
-                  :placeholder="t('form.destination.placeholder')"
-                />
+                <Select v-model="selectedDestinationCity" :options="cities" optionLabel="name" option-value="code"
+                  :placeholder="t('form.destination.placeholder')" />
               </IconField>
               <GeneralInputError :error="errors['selectedDestinationCity']" />
             </span>
             <span class="general-date filter">
               <label>{{ t("form.departureDate.label") }}</label>
-              <DatePicker
-                v-model="departureDate"
-                dateFormat="dd/mm/yy"
-                :placeholder="t('form.departureDate.placeholder')"
-                :minDate="new Date()"
-                showIcon
-                fluid
-              >
+              <DatePicker v-model="departureDate" dateFormat="dd/mm/yy"
+                :placeholder="t('form.departureDate.placeholder')" :minDate="new Date()" showIcon fluid>
                 <template #iconDisplay="slotProps">
                   <i class="pi pi-calendar-plus"></i>
                 </template>
@@ -146,14 +124,8 @@ onMounted(() => {
             </span>
             <span class="general-date filter">
               <label>{{ t("form.arrivalDate.label") }}</label>
-              <DatePicker
-                v-model="arrivalDate"
-                dateFormat="dd/mm/yy"
-                :placeholder="t('form.arrivalDate.placeholder')"
-                :minDate="departureDate || new Date()"
-                showIcon
-                fluid
-              >
+              <DatePicker v-model="arrivalDate" dateFormat="dd/mm/yy" :placeholder="t('form.arrivalDate.placeholder')"
+                :minDate="departureDate || new Date()" showIcon fluid>
                 <template #iconDisplay="slotProps">
                   <i class="pi pi-calendar-plus"></i>
                 </template>
@@ -161,13 +133,8 @@ onMounted(() => {
               <GeneralInputError :error="errors['arrivalDate']" />
             </span>
           </div>
-          <Button
-            type="submit"
-            class="app-general-button app-btn-primary tw-h-[42px]"
-            :label="t('button.search')"
-            :loading="isLoading"
-            @click="onSubmit"
-          />
+          <Button type="submit" class="app-general-button app-btn-primary tw-h-[42px]" :label="t('button.search')"
+            :loading="isLoading" @click="onSubmit" />
         </div>
       </template>
     </Card>
@@ -200,20 +167,14 @@ onMounted(() => {
           </div>
 
           <div v-else class="tw-space-y-4">
-            <div
-              v-for="flight in searchResults"
-              :key="flight.id"
-              class="flights-card"
-            >
-              <div class="tw-flex tw-justify-between tw-items-start">
-                <div class="tw-flex-1">
+            <div v-for="flight in searchResults" :key="flight.id" class="flights-card">
+              <div class="tw-flex lg:tw-justify-between max-lg:tw-flex-col tw-items-start">
+                <div class="lg:tw-flex-1 max-lg:tw-w-full ">
                   <div class="tw-flex tw-items-center tw-gap-4 tw-mb-3">
                     <span class="tw-text-gray-600">{{
                       flight.flight_number
                     }}</span>
-                    <span
-                      class="tw-text-xs tw-px-2 tw-py-1 tw-bg-blue-100 tw-text-blue-800 tw-rounded"
-                    >
+                    <span class="tw-text-xs tw-px-2 tw-py-1 tw-bg-blue-100 tw-text-blue-800 tw-rounded">
                       {{ flight.aircraft_type }}
                     </span>
                   </div>
@@ -252,32 +213,26 @@ onMounted(() => {
                     </div>
                   </div>
 
-                  <div
-                    class="tw-flex tw-gap-4 tw-mt-3 tw-text-sm tw-text-gray-600"
-                  >
+                  <div class="tw-flex tw-gap-4 tw-mt-3 tw-text-sm tw-text-gray-600 max-lg:tw-justify-center">
                     <span>
                       <i class="pi pi-calendar tw-mr-1"></i>
                       {{ useFormatDate(flight.departure_date, "date-table") }}
                     </span>
-                    <span>
+                    <span class="max-lg:tw-text-right">
                       <i class="pi pi-users tw-mr-1"></i>
                       {{ flight.available_seats }} asientos disponibles
                     </span>
                   </div>
                 </div>
 
-                <!-- Precio y acción -->
-                <div class="tw-text-right tw-ml-4">
-                  <p
-                    class="tw-text-sm tw-text-gray-500 tw-line-through"
-                    v-if="
-                      flight.base_price !==
-                      calculateFinalPrice(
-                        flight.base_price,
-                        flight.departure_date
-                      )
-                    "
-                  >
+                <div class="lg:tw-text-right lg:tw-ml-4 max-lg:tw-w-full max-lg:tw-text-center max-lg:tw-mt-4">
+                  <p class="tw-text-sm tw-text-gray-500 tw-line-through" v-if="
+                    flight.base_price !==
+                    calculateFinalPrice(
+                      flight.base_price,
+                      flight.departure_date
+                    )
+                  ">
                     {{ useFormatPrice(flight.base_price) }}
                   </p>
                   <p class="tw-text-2xl tw-font-bold tw-text-green-600">
@@ -291,13 +246,8 @@ onMounted(() => {
                     }}
                   </p>
                   <p class="tw-text-xs tw-text-gray-500">por persona</p>
-                  <Button
-                    label="Seleccionar"
-                    class="tw-mt-3"
-                    size="small"
-                    severity="success"
-                    @click="redirectToFlightDetails(flight.id)"
-                  />
+                  <Button label="Seleccionar" class="tw-mt-3" size="small" severity="success"
+                    @click="redirectToFlightDetails(flight.id)" />
                 </div>
               </div>
             </div>
@@ -308,11 +258,7 @@ onMounted(() => {
 
     <!-- Indicador de carga -->
     <div v-if="isLoading" class="tw-mt-6 tw-text-center">
-      <ProgressSpinner
-        style="width: 50px; height: 50px"
-        strokeWidth="4"
-        animationDuration=".5s"
-      />
+      <ProgressSpinner style="width: 50px; height: 50px" strokeWidth="4" animationDuration=".5s" />
       <p class="tw-mt-2 tw-text-gray-600">Buscando vuelos disponibles...</p>
     </div>
   </section>

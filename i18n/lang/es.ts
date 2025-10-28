@@ -130,6 +130,7 @@ export default {
     cancel: "Cancelar",
     back: "Volver",
     register: "Registar",
+    logout: "Cerrar sesión",
     continue: "Continuar",
     search: "Buscar",
   },

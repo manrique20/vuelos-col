@@ -208,9 +208,8 @@ export const generateAccessToken = async () => {
 
 export const setLoginUser = (data: any) => {
   const onboardingStore = useOnboardingStore();
-  const { authToken, user } = storeToRefs(onboardingStore);
-  user.value = data.user;
-  authToken.value = data.authToken;
+  const {  user } = storeToRefs(onboardingStore);
+  user.value = data;
 };
 
 export const logout = async (logout?: boolean) => {

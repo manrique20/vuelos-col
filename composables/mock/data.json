@@ -1,4 +1,36 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "email": "smanrique@kubo.co",
+      "password": "Prueba123",
+      "name": "Juan",
+      "surname": "Pérez",
+      "cellphone": "+57 300 123 4567",
+      "document_type": "CC",
+      "document_number": "1234567890",
+      "birthdate": "1990-05-15",
+      "rol": "cliente",
+      "status": "activo",
+      "created_at": "2024-01-15T10:30:00Z",
+      "updated_at": "2024-01-15T10:30:00Z"
+    },
+    {
+      "id": 2,
+      "email": "admin@aerolinea.com",
+      "password": "Prueba123",
+      "name": "Maria",
+      "surname": "González",
+      "cellphone": "+57 310 987 6543",
+      "document_type": "CC",
+      "document_number": "0987654321",
+      "birthdate": "1985-08-20",
+      "rol": "admin",
+      "status": "activo",
+      "created_at": "2024-01-10T08:00:00Z",
+      "updated_at": "2024-01-10T08:00:00Z"
+    }
+  ],
   "flights": [
     {
       "id": 1,

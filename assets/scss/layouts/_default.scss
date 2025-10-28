@@ -69,7 +69,7 @@
       min-height: calc(100dvh - 56px);
       background-color: #fafafc;
       .content-page {
-        padding: 40px;
+        @apply lg:tw-p-20 max-lg:tw-p-4;
         height: 100%;
         .general-filter {
           display: flex;

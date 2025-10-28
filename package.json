@@ -33,7 +33,6 @@
     "vue-router": "^4.5.1"
   },
   "dependencies": {
-    "@fawmi/vue-google-maps": "^0.9.79",
     "@pinia/nuxt": "^0.11.1",
     "@primevue/forms": "^4.3.5",
     "@primevue/themes": "^4.3.5",

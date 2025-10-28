@@ -160,8 +160,8 @@ export const useOnboardingStore = defineStore("onboarding", {
   },
   persist: [
     {
-      pick: ["authToken", "accessToken", "user"],
-      storage: piniaPluginPersistedstate.cookies(),
+      pick: ["user"],
+      storage: piniaPluginPersistedstate.localStorage(),
     },
   ],
 });
