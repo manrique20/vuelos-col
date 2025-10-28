@@ -25,7 +25,6 @@ onMounted(() => {
   nextTick(async () => {
     if (userData.value?.id) {
       actualPage.value = route.path;
-      await store.getProfile();
     }
   });
 });
@@ -42,56 +41,33 @@ watch(
 <template>
   <div class="app-wraper">
     <header class="header-content">
-      <img
-        src="/icons/ic_logo-header.svg"
-        alt="logo"
-        width="70px"
-        height="70px"
-        class="cursor-pointer"
-        @click="router.push(localePath({ name: 'home' }))"
-      />
+      <img src="/icons/ic_logo-header.svg" alt="logo" width="70px" height="70px" class="cursor-pointer"
+        @click="router.push(localePath({ name: 'home' }))" />
       <div class="pages-links">
-          <nuxt-link
-          class="link"
-          :class="{
-            active: route.path.includes('administrator'),
-          }"
-          :to="localePath({ name: 'administrator' })"
-        >
+        <nuxt-link v-if="userData?.rol === 'admin'" class="link" :class="{
+          active: route.path.includes('administrator'),
+        }" :to="localePath({ name: 'administrator' })">
           {{ $t("menu.administrator") }}
         </nuxt-link>
-        <nuxt-link
-          class="link"
-          :class="{
-            active: route.path.includes('home'),
-          }"
-          :to="localePath({ name: 'home' })"
-        >
+        <nuxt-link class="link" :class="{
+          active: route.path.includes('home'),
+        }" :to="localePath({ name: 'home' })">
           {{ $t("menu.searchFlights") }}
         </nuxt-link>
-        <nuxt-link
-          :class="{
-            active: route.path.includes('my-reservations'),
-          }"
-          class="link"
-          :to="localePath({ name: 'my-reservations' })"
-        >
+        <nuxt-link v-if="userData?.id" :class="{
+          active: route.path.includes('my-reservations'),
+        }" class="link" :to="localePath({ name: 'my-reservations' })">
           {{ $t("menu.myReservations") }}
         </nuxt-link>
-        <nuxt-link
-          :class="{
-            active: route.path.includes('login'),
-          }"
-          class="link"
-          :to="localePath({ name: 'login' })"
-        >
+        <nuxt-link v-else :class="{
+          active: route.path.includes('login'),
+        }" class="link" :to="localePath({ name: 'login' })">
           {{ t("menu.login") }}
         </nuxt-link>
-        <Button
-          class="app-general-button app-btn-primary"
-          :label="t('menu.register')"
-          @click="router.push(localePath({ name: 'register' }))"
-        />
+        <Button v-if="!userData?.id" class="app-general-button app-btn-primary" :label="t('menu.register')"
+          @click="router.push(localePath({ name: 'register' }))" />
+        <Button v-if="userData?.id" class="app-general-button app-btn-primary" :label="t('button.logout')"
+          @click="setLoginUser({ user: undefined, authToken: undefined })" />
       </div>
       <i class="pi pi-bars icon-responsive" @click="openMenu"></i>
     </header>
@@ -104,11 +80,7 @@ watch(
       :dialog="openLogout"
       @close-modal="openLogout = false"
     /> -->
-    <DrawerMenuMobile
-      v-model:visible="menuMobile"
-      :showUpdateDialog="menuMobile"
-      @closeModal="hiddemMenu"
-      @logout="openLogout = true"
-    />
+    <DrawerMenuMobile v-model:visible="menuMobile" :showUpdateDialog="menuMobile" @closeModal="hiddemMenu"
+      @logout="openLogout = true" />
   </div>
 </template>
