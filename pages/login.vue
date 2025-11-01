@@ -2,7 +2,7 @@
 import { useField, useForm } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/zod";
 import { z } from "zod";
-const { login } = useAuth();
+const { login } = useAuthStore();
 const { t } = useI18n();
 const localePath = useLocalePath();
 const router = useRouter();
