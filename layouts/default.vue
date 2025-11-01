@@ -68,6 +68,9 @@ watch(
           @click="router.push(localePath({ name: 'register' }))" />
         <Button v-if="userData?.id" class="app-general-button app-btn-primary" :label="t('button.logout')"
           @click="setLoginUser({ user: undefined, authToken: undefined })" />
+          <p v-if="userData?.id" class="text-s-black">
+           Hola {{ userData?.name + ' ' + userData?.surname }}!
+          </p>
       </div>
       <i class="pi pi-bars icon-responsive" @click="openMenu"></i>
     </header>
@@ -76,10 +79,7 @@ watch(
         <slot />
       </div>
     </main>
-    <!-- <LayoutsLoginLogout
-      :dialog="openLogout"
-      @close-modal="openLogout = false"
-    /> -->
+
     <DrawerMenuMobile v-model:visible="menuMobile" :showUpdateDialog="menuMobile" @closeModal="hiddemMenu"
       @logout="openLogout = true" />
   </div>

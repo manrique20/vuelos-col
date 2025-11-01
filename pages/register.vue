@@ -62,8 +62,6 @@ onMounted(() => {
     >
       <template #content>
         <RegistryStepOne  v-show="step === 'phone'" @change="change" />
-        <RegistryStepTwo ref="refStepTwo" v-show="step === 'email'" @return="returnStep"  @change="change" />
-        <RegistryStepThree  v-show="step === 'password'" @return="returnStep" @change="change" :userData="userData" />
       </template>
     </Card>
   </div>

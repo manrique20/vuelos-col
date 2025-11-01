@@ -34,6 +34,18 @@ export default {
       label: "Nombre completo",
       placeholder: "Escriba su nombre completo",
     },
+    name: {
+      label: "Nombre",
+      placeholder: "Escriba su nombre",
+    },
+    surname: {
+      label: "Apellido",
+      placeholder: "Escriba su apellido",
+    },
+    document: {
+      label: "Tipo y número de documento",
+      placeholder: "Seleccione un tipo de documento",
+    },
     phone: {
       label: "Número de celular",
       placeholder: "Escriba su número de celular",
@@ -101,7 +113,7 @@ export default {
     firstStep: {
       title: "Registrate",
       description:
-        "Ingresa el número de celular con el cuál quieres ser registrado en ACARREOSYA!. Enviaremos un código para validar tu identidad.",
+        "Ingresa los datos necesarios para completar tu registro y ser parte de Vuelos Col! Cada vez mas cerca de cumplir tus sueños.",
     },
     secondStep: {
       title: "Información personal",
