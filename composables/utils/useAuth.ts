@@ -1,54 +1,58 @@
-
+import { defineStore } from 'pinia'
 import flightsData from '../mock/data.json'
+import type { User } from '~/interfaces/User.interface'
 
+export const useAuthStore = defineStore('auth', {
+  state: () => ({
+    currentUser: null as Omit<User, 'password'> | null,
+  }),
 
-export const useAuth = () => {
-    // Datos de usuarios
-    const users = flightsData.users;
+  getters: {
+    isAuthenticated: (state) => !!state.currentUser,
+    
+    hasRole: (state) => {
+      return (role: string) => state.currentUser?.rol === role
+    },
+  },
 
-    const currentUser = useState('currentUser', () => null);
+  actions: {
+    login(email: string, password: string) {
+      const users = flightsData.users;
+      
+      const user = users.find(u =>
+        u.email.toLowerCase() === email.toLowerCase() &&
+        u.status === 'activo'
+      );
 
-    const login = (email: string, password: string) => {
-        const user = users.find(u =>
-            u.email.toLowerCase() === email.toLowerCase() &&
-            u.status === 'activo'
-        );
+      if (!user) {
+        throw new Error('Usuario no encontrado');
+      }
 
-        if (!user) {
-            throw new Error('Usuario no encontrado');
-        }
+      if (user.password !== password) {
+        throw new Error('Contraseña incorrecta');
+      }
 
-        if (user.password !== password) {
-            throw new Error('Contraseña incorrecta');
-        }
+      const { password: _, ...userWithoutPassword } = user;
+      this.currentUser = userWithoutPassword;
 
-        const { password: _, ...userWithoutPassword } = user;
-        currentUser.value = userWithoutPassword;
+      // Asumiendo que setLoginUser es una función que manejas aparte
+      if (import.meta.client) {
+        setLoginUser(userWithoutPassword);
+      }
+      
+      return userWithoutPassword;
+    },
 
-        if (import.meta.client) {
-            setLoginUser(userWithoutPassword);
-        }
-        return userWithoutPassword;
-    };
-
-    const logout = () => {
-        currentUser.value = null;
-        if (process.client) {
-            cookieStore.delete('loggedInUser');
-        }
-    };
-
-    const isAuthenticated = computed(() => !!currentUser.value);
-
-    const hasRole = (role: string) => {
-        return currentUser.value?.rol === role;
-    };
-
-    return {
-        login,
-        logout,
-        currentUser: readonly(currentUser),
-        isAuthenticated,
-        hasRole
-    };
-};
+    logout() {
+      this.currentUser = null;
+      
+      if (process.client) {
+        // Si estás usando alguna librería de cookies, ajusta esto
+        // Por ejemplo con nuxt: 
+        // const cookie = useCookie('loggedInUser')
+        // cookie.value = null
+        cookieStore.delete('loggedInUser');
+      }
+    },
+  },
+})
