@@ -30,8 +30,8 @@
       font-family: "arial-italic";
     }
   }
-  .p-inputgroup{
-        background: $color-f5f6fa;
+  .p-inputgroup {
+    background: $color-f5f6fa;
     border-radius: 14px !important;
     input {
       background: none !important;
@@ -86,12 +86,73 @@
       border-color: $color-black-3;
     }
   }
-    .p-inputgroup{
-        background: $color-f5f6fa;
+  .p-inputgroup {
+    background: $color-f5f6fa;
     border-radius: 14px !important;
     input {
       background: none !important;
       border-radius: none !important;
+    }
+  }
+}
+.general-input.form-group {
+  label {
+    font-size: $font-size-13;
+    font-family: "arial-bold";
+    color: $color-f8f8f8;
+    font-weight: normal;
+  }
+
+  .p-inputgroup {
+    border-radius: 14px;
+
+    &:has(input:focus) {
+      border: 1px solid $secondary !important;
+    }
+
+    input {
+      background: $color-f5f6fa;
+      padding: 12px 15px;
+      height: 42px;
+
+      &::placeholder {
+        font-size: $font-size-16;
+        color: $color-bfbfbf;
+        font-family: "arial-italic";
+      }
+    }
+    .p-inputgroupaddon {
+      padding-left: 0;
+      border: none;
+      background: $color-f5f6fa;
+
+      color: gray;
+      height: 42px;
+      font-size: $font-size-14;
+      width: fit-content;
+      font-family: "arial-italic";
+
+      &:has(.p-select) {
+        padding-right: 0;
+      }
+      .p-select.p-component.p-inputwrapper {
+        background: $color-f5f6fa;
+
+        border: none;
+        box-shadow: none;
+        height: 42px;
+        .p-select-label {
+          align-items: center;
+          color: $secondary;
+          display: flex;
+          font-size: $font-size-14;
+          padding: 15px 8px 15px 15px;
+        }
+        .p-select-dropdown {
+          width: fit-content;
+          justify-content: start;
+        }
+      }
     }
   }
 }

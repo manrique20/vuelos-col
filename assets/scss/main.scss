@@ -5,20 +5,15 @@
 // app css
 @use "utilities/variables";
 @use "components/input";
-@use "components/otp-input";
 @use "components/toast";
 @use "components/card";
 @use "components/table";
 @use "components/button";
 @use "components/dropdown";
 @use "components/texts";
-@use "components/rating";
 @use "components/drawer";
-@use "components/slider";
 @use "components/dialog";
-@use "components/generalPicker";
 @use "components/datePicker";
-@use "components/carousel";
 @use "layouts/login";
 @use "layouts/default";
 @use "utilities/font";
