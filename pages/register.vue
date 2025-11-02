@@ -43,26 +43,28 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="card-img-container">
-    <div class="card-image"></div>
-  </div>
-  <div class="bg-container-password"></div>
-
-  <div class="card-login-container">
-    <Card
-      class="card-login"
-      :style="{
-        'max-width': '592px',
-      }"
-      :pt="{
-        footer: {
-          class: 'flex justify-content-end mt-5',
-        },
-      }"
-    >
-      <template #content>
-        <RegistryStepOne  v-show="step === 'phone'" @change="change" />
-      </template>
-    </Card>
+  <div class="tw-w-full tw-h-full tw-overflow-auto">
+    <div class="card-img-container">
+      <div class="card-image"></div>
+    </div>
+    <div class="bg-container-password"></div>
+  
+    <div class="card-login-container ">
+      <Card
+        class="card-login"
+        :style="{
+          'max-width': '592px',
+        }"
+        :pt="{
+          footer: {
+            class: 'flex justify-content-end mt-5',
+          },
+        }"
+      >
+        <template #content>
+          <RegistryStepOne  v-show="step === 'phone'" @change="change" />
+        </template>
+      </Card>
+    </div>
   </div>
 </template>

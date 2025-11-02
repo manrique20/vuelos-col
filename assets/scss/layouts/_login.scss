@@ -24,6 +24,9 @@
     min-height: 100vh;
 
     background-color: $color-white;
+    @media (max-width: 1020px) {
+      background: linear-gradient(to bottom, white 50%, #003676 50%);
+    }
   }
   .bg-container-password {
     @apply tw-z-10 tw-absolute tw-w-full tw-pl-[350px] tw-max-w-[75%] tw-h-full tw-bg-[#003676];
@@ -36,15 +39,14 @@
       height: calc(100dvh - 150px);
       max-width: 100%;
       padding-left: 0;
-      margin-top: 150px;
     }
   }
   .card-login-container {
-    @apply tw-relative tw-ml-auto tw-h-screen tw-w-3/4 tw-bg-transparent tw-bg-no-repeat tw-bg-cover tw-bg-center tw-p-16;
-    @apply max-lg:tw-p-[30px] max-lg:tw-w-full max-lg:tw-min-h-[452px];
+    @apply tw-relative tw-ml-auto lg:tw-h-screen tw-w-3/4 tw-bg-transparent tw-bg-no-repeat tw-bg-cover tw-bg-center tw-p-16;
+    @apply max-lg:tw-p-[30px] max-lg:tw-w-full max-lg:tw-min-h-[452px] max-lg:tw-pb-0;
     z-index: 3;
     .card-login {
-      @apply tw-mx-auto tw-h-full tw-w-full tw-max-w-[593px] tw-bg-transparent tw-rounded-[32px] tw-border-0 tw-shadow-none tw-flex tw-flex-col tw-justify-center;
+      @apply tw-mx-auto tw-h-full tw-w-full tw-max-w-[593px] tw-bg-transparent tw-rounded-[32px] tw-border-0 tw-shadow-none tw-flex tw-flex-col lg:tw-justify-center ;
       .p-card-body {
         padding: 0;
       }
@@ -52,7 +54,7 @@
 
   }
   .card-img-container {
-    @apply tw-z-10 tw-absolute tw-h-full tw-min-w-[384px] tw-w-1/4 tw-left-0 tw-flex tw-flex-col tw-justify-center tw-items-center tw-bg-white;
+    @apply tw-z-10 lg:tw-absolute tw-h-full tw-min-w-[384px] tw-w-1/4 tw-left-0 tw-flex tw-flex-col tw-justify-center tw-items-center tw-bg-white;
     @apply max-lg:tw-w-full max-lg:tw-min-w-full max-lg:tw-top-0 max-lg:tw-h-[149px];
     .card-image {
       @apply tw-w-[250px] tw-h-[250px] tw-bg-[url('/icons/ic_logo-header.svg')] tw-bg-no-repeat tw-bg-cover tw-bg-center;
