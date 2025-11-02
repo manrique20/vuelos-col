@@ -61,6 +61,7 @@ watch(userData, async (newVal) => {
       </template>
       <div class="menu-mobile">
         <nuxt-link
+          v-if="userData.rol === 'admin'"
           class="link"
           :class="{
             active: route.path.includes(localePath({ name: 'administrator' })),
@@ -79,6 +80,7 @@ watch(userData, async (newVal) => {
           >{{ t("menu.searchFlights") }}
         </nuxt-link>
         <nuxt-link
+          v-if="userData.id"
           class="link"
           :class="{ active: route.path.includes('my-reservations') }"
           :to="localePath({ name: 'my-reservations' })"
@@ -87,15 +89,23 @@ watch(userData, async (newVal) => {
         </nuxt-link>
 
         <nuxt-link
+          v-if="!userData.id"
           class="link"
           :class="{ active: route.path.includes('login') }"
           :to="localePath({ name: 'login' })"
           >{{ t("menu.login") }}
         </nuxt-link>
-          <Button
+        <Button
+          v-if="!userData.id"
           class="app-general-button app-btn-primary"
           :label="t('menu.register')"
           @click="router.push(localePath({ name: 'register' }))"
+        />
+        <Button
+          v-if="userData?.id"
+          class="app-general-button app-btn-primary"
+          :label="t('button.logout')"
+          @click="setLoginUser({ user: undefined, authToken: undefined })"
         />
       </div>
     </Drawer>

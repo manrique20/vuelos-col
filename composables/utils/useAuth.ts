@@ -5,11 +5,11 @@ import type { User } from "~/interfaces/User.interface";
 export const useAuthStore = defineStore("auth", {
   state: () => ({
     currentUser: null as Omit<User, "password"> | null,
-    customers: flightsData.users, // Agregar los usuarios al state
+    customers: flightsData.users, 
   }),
   actions: {
     login(email: string, password: string) {
-      const customers = this.customers; // Usar this.customers en lugar de flightsData.users
+      const customers = this.customers;
 
       const user = customers.find(
         (u) =>
@@ -99,6 +99,6 @@ export const useAuthStore = defineStore("auth", {
   persist: {
     storage: piniaPluginPersistedstate.localStorage(),
 
-    paths: ["customers"], // Solo persistir el campo customers
+    paths: ["customers"],
   },
 });

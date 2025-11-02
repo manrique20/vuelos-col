@@ -44,7 +44,7 @@ export default {
     },
     document: {
       label: "Tipo y número de documento",
-      placeholder: "Seleccione un tipo de documento",
+      placeholder: "Seleccione y escriba el tipo y número de documento",
     },
     phone: {
       label: "Número de celular",
@@ -75,39 +75,6 @@ export default {
   home: {
     title: "Tipos de vehículos",
     found: "Vehículos encontrados",
-    vehicleCard: {
-      driverName: "Nombre del conductor",
-      rating: "Calificar servicio",
-      dimensions: "Dimensiones",
-      dimensionsData: "Alto: {height}m, Ancho: {width}m y Largo: {large}m ",
-      to: "Hasta",
-      additionalMinute: "Minuto adicional",
-      type: "Tipo de vehículo",
-      weigth: "Peso",
-      space: "Espacio",
-    },
-    carDetail: {
-      plate: "Placa:",
-      detail: "Datos del vehículo",
-      greeting: "!Hola, Soy ",
-      active: " activo en la aplicación",
-      serviceDetail: {
-        title: "Detalles del servicio:",
-        min: "Mín. tiempo de servicio:",
-        to: "Hasta {hours} horas / {price}",
-        add: "Valor Minuto adicional:",
-      },
-      modal: {
-        title: "Registrarme",
-        description:
-          "Para poder contactar a los conductores, primero debes registrarte en nuestro sistema. ¿Estás de acuerdo?",
-      },
-      personalDriverInfo: {
-        title: "Contactar a {name}",
-        message: "Número de contacto de Juan Felipe:",
-      },
-      conditions: "Condiciones del servicio:",
-    },
   },
   registry: {
     firstStep: {
@@ -115,28 +82,8 @@ export default {
       description:
         "Ingresa los datos necesarios para completar tu registro y ser parte de Vuelos Col! Cada vez mas cerca de cumplir tus sueños.",
     },
-    secondStep: {
-      title: "Información personal",
-      description:
-        "¡Bienvenido! Completa la siguiente información de tu perfil.",
-    },
-    thirdStep: {
-      title: "Crea tu contraseña",
-      description:
-        "Crea tu contraseña para acceder a nuestros servicios. Recuerda que debe ser de carácter privado.",
-    },
   },
-  favorites: {
-    table: {
-      name: "Nombre del conductor",
-      contactDate: "Fecha de contacto",
-      vehicleType: "Tipo de vehículo",
-      rating: "Calificación",
-    },
-    filter: {
-      vehicleTypes: "Tipo de vehículo",
-    },
-  },
+
   button: {
     login: "Iniciar sesión",
     cancel: "Cancelar",
@@ -165,7 +112,6 @@ export default {
         valid: "Mín. 8 caracteres alfanuméricos: 1 mayúscula, 1 minúscula",
         confirm: "Las contraseñas deben coincidir",
       },
-      number: "El dato es solo numérico",
     },
   },
   store: {
@@ -183,39 +129,8 @@ export default {
   },
   text: {
     login: "Por favor digita tu correo electrónico",
-    forgotPassword:
-      "Ingresa un número de celular. A continuación te Enviaremos un código para validar tu identidad.",
-    validateCode: "Valida tu identidad",
-    validateDescription: "Ingresa el código que enviamos al número: ",
-    changePassword:
-      "Crea tu nueva contraseña para acceder a nuestros servicios. Recuerda que debe ser de carácter privado.",
-    logout: "¿Seguro que desea cerrar sesión?",
-    code: "¿Aún no recibes el código?",
     return: "Volver",
-    locationModal: {
-      title: "Permiso de ubicación",
-      text: "Para brindarte una mejor experiencia y conectar con los conductores cercanos, necesitamos permiso para acceder a tu ubicación en tiempo real",
-    },
-    segs: "{data} segs",
-    deniedPermitionsModal: {
-      title: "Permisos de ubicación denegados",
-      message:
-        "Para usar esta función necesitas habilitar los permisos de ubicación en tu navegador.",
-      stepsTitle: "Sigue estos pasos:",
-      step1:
-        "Haz clic en el ícono de candado o información en la barra de direcciones",
-      step2: "Busca la opción 'Ubicación' o 'Location'",
-      step3: "Cambia el permiso a 'Permitir' o 'Allow'",
-      step4: "Recarga la página o haz clic en 'Verificar nuevamente'",
-    },
-    admins: {
-      create: {
-        title: "Crear admin",
-      },
-      edit: {
-        title: "Editar admin",
-      },
-    },
+
   },
   table: {
     empty: {
@@ -243,6 +158,13 @@ export default {
         inactive: "Inactivo",
       },
     },
+    flight_number: 'Número de vuelo',
+    origin: 'Origen',
+    destination: 'Destino',
+    departure_date: 'Fecha de salida',
+    arrival_date: 'Fecha de regreso',
+    status: 'Estado',
+    aircraft: 'Aeronave',
     filters: {
       all: "Todos",
       search: "Buscar",

@@ -44,7 +44,7 @@
       "base_price": 180000,
       "total_capacity": 180,
       "available_seats": 45,
-      "status": "scheduled",
+      "status": "active",
       "aircraft_type": "Airbus A320"
     },
     {
@@ -61,7 +61,7 @@
       "base_price": 195000,
       "total_capacity": 150,
       "available_seats": 23,
-      "status": "scheduled",
+      "status": "active",
       "aircraft_type": "Boeing 737"
     },
     {
@@ -78,7 +78,7 @@
       "base_price": 220000,
       "total_capacity": 120,
       "available_seats": 67,
-      "status": "scheduled",
+      "status": "active",
       "aircraft_type": "Airbus A320"
     },
     {
@@ -95,7 +95,7 @@
       "base_price": 185000,
       "total_capacity": 180,
       "available_seats": 12,
-      "status": "scheduled",
+      "status": "active",
       "aircraft_type": "Airbus A319"
     },
     {
@@ -112,7 +112,7 @@
       "base_price": 210000,
       "total_capacity": 150,
       "available_seats": 89,
-      "status": "scheduled",
+      "status": "active",
       "aircraft_type": "Boeing 737-800"
     },
     {
@@ -129,7 +129,7 @@
       "base_price": 175000,
       "total_capacity": 189,
       "available_seats": 134,
-      "status": "scheduled",
+      "status": "active",
       "aircraft_type": "Boeing 737"
     },
     {
@@ -146,7 +146,7 @@
       "base_price": 245000,
       "total_capacity": 180,
       "available_seats": 56,
-      "status": "scheduled",
+      "status": "active",
       "aircraft_type": "Airbus A320"
     },
     {
@@ -163,7 +163,7 @@
       "base_price": 168000,
       "total_capacity": 120,
       "available_seats": 3,
-      "status": "scheduled",
+      "status": "active",
       "aircraft_type": "Airbus A320"
     },
     {
@@ -180,7 +180,7 @@
       "base_price": 235000,
       "total_capacity": 150,
       "available_seats": 78,
-      "status": "scheduled",
+      "status": "active",
       "aircraft_type": "Boeing 737"
     },
     {
@@ -214,7 +214,7 @@
       "base_price": 165000,
       "total_capacity": 189,
       "available_seats": 102,
-      "status": "scheduled",
+      "status": "active",
       "aircraft_type": "Boeing 737-800"
     },
     {
@@ -231,7 +231,7 @@
       "base_price": 258000,
       "total_capacity": 180,
       "available_seats": 91,
-      "status": "scheduled",
+      "status": "active",
       "aircraft_type": "Airbus A320"
     },
     {
@@ -248,7 +248,7 @@
       "base_price": 262000,
       "total_capacity": 150,
       "available_seats": 44,
-      "status": "scheduled",
+      "status": "active",
       "aircraft_type": "Boeing 737"
     },
     {
@@ -265,7 +265,7 @@
       "base_price": 172000,
       "total_capacity": 120,
       "available_seats": 18,
-      "status": "scheduled",
+      "status": "active",
       "aircraft_type": "Airbus A320"
     },
     {
@@ -282,7 +282,7 @@
       "base_price": 198000,
       "total_capacity": 180,
       "available_seats": 125,
-      "status": "scheduled",
+      "status": "active",
       "aircraft_type": "Airbus A319"
     }
   ],
