@@ -22,6 +22,10 @@ export default {
       label: "Ciudad de destino",
       placeholder: "Seleccione"
     },
+    selectedFlight: {
+      label: "Vuelo seleccionado",
+      placeholder: "Seleccione un vuelo"
+    },
     departureDate: {
       label: "Fecha de salida",
       placeholder: "Seleccione una fecha"
@@ -30,6 +34,18 @@ export default {
       label: "Fecha de regreso",
       placeholder: "Seleccione una fecha"
     },
+    seats: {
+      label: "Asientos",
+      placeholder: "Seleccione la cantidad de asientos"
+    },
+    card: {
+      label: "Datos de tarjeta",
+      number: "Número de tarjeta",
+      holder: "Nombre del titular",
+      expiration: "Fecha de expiración",
+      cvv: "CVV",
+    },
+    price: 'Precio final',
     fullname: {
       label: "Nombre completo",
       placeholder: "Escriba su nombre completo",
@@ -112,6 +128,11 @@ export default {
         valid: "Mín. 8 caracteres alfanuméricos: 1 mayúscula, 1 minúscula",
         confirm: "Las contraseñas deben coincidir",
       },
+      card: {
+        number: "El número de tarjeta no es válido",
+        expiry: "La fecha de expiración no es válida",
+        cvv: "El código CVV no es válido",
+      }
     },
   },
   store: {
@@ -165,6 +186,17 @@ export default {
     arrival_date: 'Fecha de regreso',
     status: 'Estado',
     aircraft: 'Aeronave',
+    name: 'Nombre',
+    surname: 'Apellido',
+    document_number: 'Número de documento',
+    flightId: 'ID de vuelo',
+    userId: 'ID de usuario',
+    booking_date: 'Fecha de reserva',
+    seats_count: 'Cantidad de asientos',
+    total_price: 'Precio total',
+    price_per_seat: 'Precio por asiento',
+  },
+  filter: {
     filters: {
       all: "Todos",
       search: "Buscar",

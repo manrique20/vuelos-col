@@ -4,12 +4,14 @@ import { toTypedSchema } from "@vee-validate/zod";
 import { z } from "zod";
 
 /** Stores */
+const onboardingStore = useOnboardingStore();
+const flightStore = useFlightStore();
+const { getLoginUser: userData } = onboardingStore;
 const { t } = useI18n();
 const localePath = useLocalePath();
 const router = useRouter();
 const route = useRoute();
-const { searchFlights, searchResults, isLoading, error, calculateFinalPrice } =
-  useFlightSearch();
+const { searchResults, isLoading, error } = storeToRefs(flightStore);
 
 const { handleSubmit, errors, meta, resetForm, values } = useForm({
   validationSchema: toTypedSchema(
@@ -59,7 +61,7 @@ const onSubmit = handleSubmit(async (values: any) => {
       arrivalDate: useFormatDate(values.arrivalDate.toISOString(), 'date-send'),
     },
   });
-  const results = await searchFlights({
+  const results = await flightStore.searchFlights({
     selectedOriginCity: values.selectedOriginCity,
     selectedDestinationCity: values.selectedDestinationCity,
     departureDate: values.departureDate,
@@ -68,8 +70,21 @@ const onSubmit = handleSubmit(async (values: any) => {
   showResults.value = true;
 });
 const redirectToFlightDetails = (flight: number) => {
-  router.push(localePath({ name: "home-id", params: { id: flight } }));
+  router.push(localePath({ name: "home-id", params: { id: flight }, query: {
+    origin: selectedOriginCity.value,
+    destination: selectedDestinationCity.value,
+    departureDate: useFormatDate(departureDate.value?.toISOString() || '', 'date-send'),
+    arrivalDate: useFormatDate(arrivalDate.value?.toISOString() || '', 'date-send'),
+  } }));
 };
+const redirectToLogin = () => {
+  router.push(localePath({ name: "login", query: {
+    origin: selectedOriginCity.value,
+    destination: selectedDestinationCity.value,
+    departureDate: useFormatDate(departureDate.value?.toISOString() || '', 'date-send'),
+    arrivalDate: useFormatDate(arrivalDate.value?.toISOString() || '', 'date-send'),
+  } }));
+};    
 onMounted(() => {
   nextTick(() => {
     if (route.query.origin && route.query.destination && route.query.departureDate && route.query.arrivalDate) {
@@ -180,7 +195,6 @@ onMounted(() => {
                   </div>
 
                   <div class="tw-flex tw-items-center tw-gap-6">
-                    <!-- Origen -->
                     <div class="tw-text-center">
                       <div class="tw-text-2xl tw-font-bold">
                         {{ useFormatDate(flight.departure_hour, "only-hour") }}
@@ -198,8 +212,6 @@ onMounted(() => {
                       <i class="pi pi-send tw-mx-2 tw-text-gray-400"></i>
                       <Divider />
                     </div>
-
-                    <!-- Destino -->
                     <div class="tw-text-center">
                       <div class="tw-text-2xl tw-font-bold">
                         {{ useFormatDate(flight.arrival_hour, "only-hour") }}
@@ -228,7 +240,7 @@ onMounted(() => {
                 <div class="lg:tw-text-right lg:tw-ml-4 max-lg:tw-w-full max-lg:tw-text-center max-lg:tw-mt-4">
                   <p class="tw-text-sm tw-text-gray-500 tw-line-through" v-if="
                     flight.base_price !==
-                    calculateFinalPrice(
+                    flightStore.calculateFinalPrice(
                       flight.base_price,
                       flight.departure_date
                     )
@@ -238,7 +250,7 @@ onMounted(() => {
                   <p class="tw-text-2xl tw-font-bold tw-text-green-600">
                     {{
                       useFormatPrice(
-                        calculateFinalPrice(
+                        flightStore.calculateFinalPrice(
                           flight.base_price,
                           flight.departure_date
                         )
@@ -247,7 +259,7 @@ onMounted(() => {
                   </p>
                   <p class="tw-text-xs tw-text-gray-500">por persona</p>
                   <Button label="Seleccionar" class="tw-mt-3" size="small" severity="success"
-                    @click="redirectToFlightDetails(flight.id)" />
+                    @click="userData?.id ? redirectToFlightDetails(flight.id) : redirectToLogin()" />
                 </div>
               </div>
             </div>
