@@ -183,6 +183,9 @@ watch(
             <p v-else-if="item.type === 'enum'">
               {{ getEnum(searchField(item.field, slotProps.data), item.enum) }}
             </p>
+            <p v-else-if="item.type === 'price'">
+              {{ useFormatPrice(searchField(item.field, slotProps.data)) }}
+            </p>
             <p v-else-if="item.type === 'date'">
               {{
                 useFormatDate(
@@ -226,12 +229,5 @@ watch(
       </DataTable>
     </div>
 
-    <GeneralPaginator
-      class="mt-4"
-      v-model="pageFirst"
-      :rows="limit"
-      :total-records="pages"
-      @page="onPage($event)"
-    />
   </div>
 </template>

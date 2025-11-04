@@ -6,6 +6,7 @@ const { login } = useAuthStore();
 const { t } = useI18n();
 const localePath = useLocalePath();
 const router = useRouter();
+const route = useRoute();
 definePageMeta({ layout: "login" });
 
 const { handleSubmit, errors, meta } = useForm({
@@ -44,11 +45,10 @@ const onSubmit = handleSubmit(async (values: any) => {
     const user = await login(values.email, values.password);
     console.log('Usuario logueado:', user);
 
-    // Redireccionar
     if (user.rol === 'admin') {
       await router.push(localePath({ name: 'administrator' }));
     } else {
-      await router.push(localePath({ name: 'home' }));
+      await router.push(localePath({ name: 'home', query: route.query }));
     }
   } catch (error: any) {
 
