@@ -1,7 +1,7 @@
 @use "../utilities/variables" as *;
 .general-card {
-  background: #CBC6C6;
-  border-radius: 20px;
+  background: #CBC6C6 !important;
+  border-radius: 20px !important;
   .flights-card{
     @apply tw-border tw-rounded-lg tw-p-4  tw-transition-shadow tw-cursor-pointer tw-bg-white;
     &:hover {

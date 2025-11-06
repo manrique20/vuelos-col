@@ -99,7 +99,6 @@ const onSubmit = handleSubmit(async (values: any) => {
     ),
   });
   console.log(response);
-  
 });
 const getData = () => {
   flightData.value = flightStore.getFlightById(+route.params.id);
@@ -120,7 +119,6 @@ const getData = () => {
 onMounted(() =>
   nextTick(async () => {
     getData();
-    
   })
 );
 watch(
@@ -145,10 +143,10 @@ watch(
     >
       <div class="text-center lg:tw-mb-8 max-lg:tw-mb-4">
         <h1 class="text-2xl font-extrabold text-gray-800">
-          Cada vez más cerca de cumplir tus sueños
+          {{ t("title.dreams") }}
         </h1>
         <p class="text-lg font-semibold text-gray-700 mt-1">
-          Formulario de datos del pasajero
+          {{ t("text.form") }}
         </p>
       </div>
 
@@ -354,7 +352,7 @@ watch(
           type="submit"
           class="w-full bg-blue-600 text-white py-2 rounded-md font-semibold hover:bg-blue-700 transition mt-6"
         >
-          CONFIRMAR RESERVA
+          {{ t("button.confirm") }}
         </button>
       </div>
     </form>

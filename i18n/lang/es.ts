@@ -12,6 +12,7 @@ export default {
     validateCode: "Recuperar contraseña",
     changePassword: "Restablecer contraseña",
     logout: "¿Estás seguro de querer cerrar la sesión?",
+    dreams: 'Cada vez más cerca de cumplir tus sueños',
   },
   form: {
     origin:{
@@ -88,10 +89,6 @@ export default {
       placeholder: "Repetir Contraseña",
     },
   },
-  home: {
-    title: "Tipos de vehículos",
-    found: "Vehículos encontrados",
-  },
   registry: {
     firstStep: {
       title: "Registrate",
@@ -99,7 +96,6 @@ export default {
         "Ingresa los datos necesarios para completar tu registro y ser parte de Vuelos Col! Cada vez mas cerca de cumplir tus sueños.",
     },
   },
-
   button: {
     login: "Iniciar sesión",
     cancel: "Cancelar",
@@ -107,7 +103,9 @@ export default {
     register: "Registar",
     logout: "Cerrar sesión",
     continue: "Continuar",
+    select: "Seleccionar",
     search: "Buscar",
+    confirm: 'CONFIRMAR RESERVA'
   },
   rule: {
     form: "Por favor revisa la información",
@@ -115,6 +113,7 @@ export default {
     validation: {
       require: "El dato es requerido para continuar",
       requireEmail: "El correo es requerido para continuar",
+      date: 'La fecha de llegada debe ser posterior o igual a la fecha de salida',
       value: {
         min: "Debe ser mayor o igual a {data}",
         max: "Debe ser inferior o igual a {data}",
@@ -151,7 +150,7 @@ export default {
   text: {
     login: "Por favor digita tu correo electrónico",
     return: "Volver",
-
+    form: 'Formulario de datos del pasajero'
   },
   table: {
     empty: {
@@ -212,6 +211,16 @@ export default {
     from: "de",
     previousPage: "Anterior",
     nextPage: "Siguiente",
+  },
+  home: {
+    availableFlights: "Vuelos disponibles",
+    results: "resultados",
+    notFound: {
+      1: 'No se encontraron vuelos disponibles para las fechas seleccionadas',
+      2: 'Por favor, intenta con otras fechas o destinos.', 
+    },
+    availableSeats: "Asientos disponibles",
+    perPerson: "por persona",
   },
   menu: {
     logout: "Cerrar sesión",
