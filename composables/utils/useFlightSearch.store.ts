@@ -6,7 +6,7 @@ import type {
   Booking,
   SearchParams,
   CreateBookingParams,
-} from "@/types";
+} from "../../interfaces/Flights.interface";
 
 export const useFlightStore = defineStore(
   "flight",
@@ -183,15 +183,19 @@ export const useFlightStore = defineStore(
     const getAllBookings = (): Booking[] => {
       return bookings.value;
     };
+    const getBookingsByUserId = (userId: number): Booking[] => {
+      return bookings.value.filter((booking) => booking.user_id === userId);
+    };
     const getFlightById = (flightId: number) => {
       const flight = flights.value.find((f) => f.id === flightId);
       return flight ? flight : null;
     };
-
-    const getAllFlights = () => {
-      return flights.value.filter((flight) => flight.available_seats > 0);
+    const changeFlightStatus = (flightId: number, status: "active" | "inactive") => {
+      const flightIndex = flights.value.findIndex((f) => f.id === flightId);
+      if (flightIndex !== -1) {
+        flights.value[flightIndex].status = status;
+      }
     };
-
     return {
       flights,
       searchResults,
@@ -200,10 +204,10 @@ export const useFlightStore = defineStore(
       error,
       searchFlights,
       calculateFinalPrice,
-      getAllFlights,
       fetchAllFlights,
       getFlightById,
-
+      changeFlightStatus,
+      getBookingsByUserId,
       createBooking,
       getAllBookings
     };

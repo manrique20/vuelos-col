@@ -374,7 +374,6 @@ onMounted(() => {
       </Card>
     </div>
 
-    <!-- Indicador de carga -->
     <div v-if="isLoading" class="tw-mt-6 tw-text-center">
       <ProgressSpinner
         style="width: 50px; height: 50px"

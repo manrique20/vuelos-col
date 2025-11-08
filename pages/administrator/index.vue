@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import type { PageEvent } from "~/interfaces/General.interface";
 import { storeToRefs } from "pinia";
 
-import { Status } from "~/interfaces/Enums.interface";
 import type { TableFields } from "~/interfaces/Table.interface";
 
 const flightSearchStore = useFlightStore();
@@ -10,11 +8,7 @@ const { flights, bookings } = storeToRefs(flightSearchStore);
 const { t } = useI18n();
 const router = useRouter();
 const localePath = useLocalePath();
-const openCreate = ref(false);
-const statuses = Object.entries(Status).map(([key, value]) => ({
-  key: t(`table.state.${key}`),
-  value,
-}));
+
 const onboardingStore = useOnboardingStore();
 const { getLoginUser: userData } = storeToRefs(onboardingStore);
 const data = ref(flights.value);

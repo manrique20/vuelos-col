@@ -176,6 +176,7 @@ export default {
       status: {
         active: "Activo",
         inactive: "Inactivo",
+        full: "Lleno",
       },
     },
     flight_number: 'Número de vuelo',
