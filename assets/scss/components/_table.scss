@@ -78,7 +78,15 @@
         }
       }
     }
-
+    .table-status{
+      min-width: 112px;
+      padding: 3px 0;
+      border-radius: 20px;
+      &.full{
+        color: $confirmation-messages;
+        background-color: rgb($confirmation-messages, 0.2);
+      }
+    }
     .color-p-black {
       color: $color-25282b;
       font-family: "app-font-medium";

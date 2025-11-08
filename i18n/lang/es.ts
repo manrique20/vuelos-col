@@ -114,14 +114,6 @@ export default {
       require: "El dato es requerido para continuar",
       requireEmail: "El correo es requerido para continuar",
       date: 'La fecha de llegada debe ser posterior o igual a la fecha de salida',
-      value: {
-        min: "Debe ser mayor o igual a {data}",
-        max: "Debe ser inferior o igual a {data}",
-      },
-      length: {
-        min: "Debe contener al menos {data} carácteres",
-        max: "No puede contener más de {data} carácteres",
-      },
       email: "Debe ser una dirección de correo válida",
       password: {
         valid: "Mín. 8 caracteres alfanuméricos: 1 mayúscula, 1 minúscula",
@@ -176,6 +168,7 @@ export default {
       status: {
         active: "Activo",
         inactive: "Inactivo",
+        full: "Lleno",
       },
     },
     flight_number: 'Número de vuelo',
@@ -197,20 +190,8 @@ export default {
   },
   filter: {
     filters: {
-      all: "Todos",
-      search: "Buscar",
-      role: "Rol",
       status: "Estado",
-      date: "dd-mm-aaaa ",
     },
-  },
-  paginator: {
-    display: "Mostrar",
-    entries: "Registros",
-    page: "Página",
-    from: "de",
-    previousPage: "Anterior",
-    nextPage: "Siguiente",
   },
   home: {
     availableFlights: "Vuelos disponibles",
@@ -231,8 +212,6 @@ export default {
     register: "Registrarse",
     profile: "Perfil",
     notFound: "404 - Página no encontrada",
-  },
-  breadcrumb: {
-    vehicleList: "Buscar vehículos",
+    greeting: "Hola",
   },
 };

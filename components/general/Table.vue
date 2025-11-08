@@ -173,11 +173,17 @@ watch(
               :class="item.fieldClass"
             >
               <GeneralTableStatus
+                v-if="searchField(item.field, slotProps.data) !== 'full'"
                 :id="slotProps.data.id"
                 :status="searchField(item.field, slotProps.data)"
                 :service="item.service"
                 @reload="$emit('reload')"
               />
+              <p v-else :class="'table-status ' + searchField(item.field, slotProps.data)">
+                {{
+                  t(t(`table.enums.status.${searchField(item.field, slotProps.data)}`), item.enum)
+                }}
+              </p>
             </div>
 
             <p v-else-if="item.type === 'enum'">
@@ -228,6 +234,5 @@ watch(
         </template>
       </DataTable>
     </div>
-
   </div>
 </template>

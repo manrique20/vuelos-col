@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Status } from '~/interfaces/Enums.interface'
 const emit = defineEmits(['changeStatus'])
+const flightStore = useFlightStore()
 const { t } = useI18n()
 const props = defineProps({
   id: {
@@ -21,10 +22,8 @@ const statusList = Object.entries(Status).map(([key, value]) => ({
 const statusSelected = ref(props.status)
 
 const changeStatus = () => {
-  emit('changeStatus', {
-    id: props.id,
-    status: statusSelected.value,
-  })
+  flightStore.changeFlightStatus(Number(props.id), statusSelected.value as 'active' | 'inactive')
+  emit('changeStatus', statusSelected.value)
 }
 
 onMounted(() => {
@@ -36,7 +35,7 @@ onMounted(() => {
     <span class="general-dropdown detail-status table" :class="statusSelected">
       <Select
         v-model="statusSelected"
-        :placeholder="t('table.filters.status')"
+        :placeholder="t('filter.filters.status')"
         option-value="value"
         option-label="key"
         :class="status"

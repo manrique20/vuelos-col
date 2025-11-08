@@ -84,7 +84,7 @@
         background-color: rgba($confirmation-messages, 0.2);
       }
       &.inactive {
-        background-color: rgba($error-messages, 0.2);
+        background-color: rgba($color-gray-1, 0.2);
       }
       .p-select-dropdown {
         .icon-dropdown {
@@ -93,7 +93,7 @@
             color: $confirmation-messages;
           }
           &.inactive {
-            color: $error-messages;
+            color: $color-343739;
           }
         }
       }
@@ -105,7 +105,7 @@
     }
     &.inactive {
       span {
-        color: $error-messages;
+        color: $color-343739;
       }
     }
   }

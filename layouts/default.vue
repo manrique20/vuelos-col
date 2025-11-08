@@ -43,7 +43,8 @@ watch(
     <header class="header-content">
       <img src="/icons/ic_logo-header.svg" alt="logo" width="70px" height="70px" class="cursor-pointer"
         @click="router.push(localePath({ name: 'home' }))" />
-      <div class="pages-links">
+        <div class="pages-links">
+        <GeneralLanguageSwitcher />
         <nuxt-link v-if="userData?.rol === 'admin'" class="link" :class="{
           active: route.path.includes('administrator'),
         }" :to="localePath({ name: 'administrator' })">
@@ -69,7 +70,7 @@ watch(
         <Button v-if="userData?.id" class="app-general-button app-btn-primary" :label="t('button.logout')"
           @click="setLoginUser({ user: undefined, authToken: undefined })" />
           <p v-if="userData?.id" class="text-s-black">
-           Hola {{ userData?.name + ' ' + userData?.surname }}!
+           {{ t('menu.greeting') }} {{ userData?.name + ' ' + userData?.surname }}!
           </p>
       </div>
       <i class="pi pi-bars icon-responsive" @click="openMenu"></i>
