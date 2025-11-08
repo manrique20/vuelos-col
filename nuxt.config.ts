@@ -142,7 +142,14 @@ export default defineNuxtConfig({
         code: "es",
         file: "es.ts",
         name: "Español",
+        icon: "/icons/language/ic_colombia.svg",
       },
+      {
+        code: "en",
+        file: "en.ts",
+        name: "English",
+        icon: "/icons/language/ic_uk.svg",
+      }
     ],
     lazy: true,
     langDir: "lang/",
