@@ -7,44 +7,48 @@
       flex-direction: column;
       gap: 20px;
       font-family: "Arial";
-
-      .link {
-        position: relative;
-        color: $color-black;
-        font-family: "Arial";
-        text-decoration: none;
-        width: auto;
-        cursor: pointer;
-        &.active {
-          font-family: "Arial-Bold";
+        .link {
+          position: relative;
+          color: $color-black;
+          font-family: "Arial";
+          text-decoration: none;
+          width: auto;
+          cursor: pointer;
+          &.active {
+            font-family: "Arial-Bold";
+            &::after {
+              content: "";
+              z-index: 40;
+              transform: scaleX(1) translateX(0);
+              transform-origin: bottom left;
+            }
+          }
           &::after {
             content: "";
+            position: absolute;
+            width: 30px;
+            transform: scaleX(0) translateX(0);
+            height: 3px;
+            bottom: -5px;
+            left: 0;
             z-index: 40;
-            transform: scaleX(1) translateX(0);
-            transform-origin: bottom left;
+            transition: transform 0.25s ease-out;
+            background-color: #d0bcfe;
           }
-        }
-        &::after {
-          content: "";
-          position: absolute;
-          width: 30px;
-          transform: scaleX(0) translateX(0);
-          height: 3px;
-          bottom: -5px;
-          left: 0;
-          z-index: 40;
-          transition: transform 0.25s ease-out;
-          background-color: #d0bcfe;
-        }
-        &:not(.active):hover {
-          opacity: 0.8;
-          &::after {
-            transform: scaleX(1) translateX(0);
-            z-index: 40;
-            transform-origin: bottom left;
+          &:not(.active):hover {
+            opacity: 0.8;
+            &::after {
+              transform: scaleX(1) translateX(0);
+              z-index: 40;
+              transform-origin: bottom left;
+            }
           }
         }
       }
-    }
+      .p-drawer-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
   }
 }

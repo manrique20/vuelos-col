@@ -43,7 +43,7 @@ watch(
     <header class="header-content">
       <img src="/icons/ic_logo-header.svg" alt="logo" width="70px" height="70px" class="cursor-pointer"
         @click="router.push(localePath({ name: 'home' }))" />
-      <div class="pages-links">
+        <div class="pages-links">
         <GeneralLanguageSwitcher />
         <nuxt-link v-if="userData?.rol === 'admin'" class="link" :class="{
           active: route.path.includes('administrator'),

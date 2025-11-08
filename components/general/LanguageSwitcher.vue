@@ -44,13 +44,13 @@ const toggle = (event: Event) => {
 </script>
 
 <template>
-  <div class="flex items-center gap-2">
+  <div class="flex ">
     <Button
       @click="toggle"
       text
       rounded
       severity="secondary"
-      class="p-0"
+      class="p-0 tw-max-w-[50px] tw-max-h-[50px]"
       aria-label="Cambiar idioma"
     >
       <Avatar

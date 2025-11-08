@@ -60,6 +60,7 @@ watch(userData, async (newVal) => {
         <i class="pi pi-times" style="color: #003b71" @click="closeDrawer"></i>
       </template>
       <div class="menu-mobile">
+
         <nuxt-link
           v-if="userData.rol === 'admin'"
           class="link"
@@ -108,6 +109,10 @@ watch(userData, async (newVal) => {
           @click="setLoginUser({ user: undefined, authToken: undefined })"
         />
       </div>
+      <div class="tw-flex tw-justify-center ">
+        <GeneralLanguageSwitcher />
+      </div>
+
     </Drawer>
   </div>
 </template>
