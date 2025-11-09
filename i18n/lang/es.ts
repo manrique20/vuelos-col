@@ -202,6 +202,7 @@ export default {
     },
     availableSeats: "Asientos disponibles",
     perPerson: "por persona",
+    searchingFlights: "Buscando vuelos...",
   },
   menu: {
     logout: "Cerrar sesión",

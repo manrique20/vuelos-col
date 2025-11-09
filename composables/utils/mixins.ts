@@ -24,13 +24,6 @@ export const useLoading = (value: boolean) => {
 
   loading.value = value;
 };
-export const truncateText = (text: string, maxWords: number) => {
-  if (!text) return "";
-  const words = text.split(" ");
-  if (words.length <= maxWords) return text;
-  return words.slice(0, maxWords).join(" ") + "...";
-};
-
 
 export const useSearchItemJson = (path: string, obj: any) => {
   const keys = path.split(".");

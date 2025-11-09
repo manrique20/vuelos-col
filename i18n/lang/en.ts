@@ -202,6 +202,7 @@ export default {
     },
     availableSeats: "Available seats",
     perPerson: "per person",
+    searchingFlights: "Searching flights...",
   },
   menu: {
     logout: "Log out",

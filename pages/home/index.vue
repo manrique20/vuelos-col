@@ -12,7 +12,7 @@ const localePath = useLocalePath();
 const router = useRouter();
 const route = useRoute();
 const { searchResults, isLoading, error } = storeToRefs(flightStore);
-
+// Form validation schema
 const { handleSubmit, errors, meta, resetForm, values } = useForm({
   validationSchema: toTypedSchema(
     z
@@ -48,9 +48,10 @@ const cities = [
 ];
 
 const showResults = ref(false);
-
+// Handle form submission
 const onSubmit = handleSubmit(async (values: any) => {
   showResults.value = false;
+  // Update route with query params
   await router.push({
     name: route.name,
     query: {
@@ -71,6 +72,7 @@ const onSubmit = handleSubmit(async (values: any) => {
   });
   showResults.value = true;
 });
+// Redirect to flight details with query params
 const redirectToFlightDetails = (flight: number) => {
   router.push(
     localePath({
@@ -91,6 +93,7 @@ const redirectToFlightDetails = (flight: number) => {
     })
   );
 };
+// Redirect to login with query params
 const redirectToLogin = () => {
   router.push(
     localePath({
@@ -112,6 +115,7 @@ const redirectToLogin = () => {
 };
 onMounted(() => {
   nextTick(() => {
+    // If query params exist, pre-fill the form and submit
     if (
       route.query.origin &&
       route.query.destination &&
@@ -140,6 +144,7 @@ onMounted(() => {
   <section class="content-page">
     <Card class="general-card">
       <template #content>
+        <!-- Form for flight search -->
         <div
           class="tw-flex lg:tw-justify-between max-lg:tw-flex-col tw-items-center tw-gap-6"
         >
@@ -236,7 +241,7 @@ onMounted(() => {
     <div v-if="error" class="tw-mt-4">
       <Message severity="error" :closable="true">{{ error }}</Message>
     </div>
-
+    <!-- Display search results -->
     <div v-if="showResults" class="tw-mt-6">
       <Card class="general-card">
         <template #header>
@@ -250,6 +255,7 @@ onMounted(() => {
           </div>
         </template>
         <template #content>
+          <!-- No results found message -->
           <div v-if="searchResults.length === 0" class="tw-text-center tw-py-8">
             <i class="pi pi-inbox tw-text-5xl tw-text-gray-400 tw-mb-4"></i>
             <p class="tw-text-lg tw-text-gray-600">
@@ -259,7 +265,7 @@ onMounted(() => {
               {{ t("home.notFound.2") }}
             </p>
           </div>
-
+          <!-- List of available flights -->
           <div v-else class="tw-space-y-4">
             <div
               v-for="flight in searchResults"
@@ -380,7 +386,7 @@ onMounted(() => {
         strokeWidth="4"
         animationDuration=".5s"
       />
-      <p class="tw-mt-2 tw-text-gray-600">Buscando vuelos disponibles...</p>
+      <p class="tw-mt-2 tw-text-gray-600">{{ t("home.searchingFlights") }}</p>
     </div>
   </section>
 </template>

@@ -12,7 +12,7 @@ const onboardingStore = useOnboardingStore();
 const { getLoginUser: userData } = onboardingStore;
 const { t } = useI18n();
 const flightData = ref();
-
+// Form setup and validation
 const { handleSubmit, errors, meta, resetForm } = useForm({
   validationSchema: toTypedSchema(
     z.object({
@@ -61,6 +61,7 @@ const { handleSubmit, errors, meta, resetForm } = useForm({
     })
   ),
 });
+// Form fields
 const { value: name } = useField<string>("name");
 const { value: surname } = useField<string>("surname");
 const { value: document } = useField<string>("document");
@@ -82,8 +83,8 @@ const documents = ref([
   { id: "CE", alias: "CE" },
   { id: "PASSPORT", alias: "PASAPORTE" },
 ]);
+// Form submission
 const onSubmit = handleSubmit(async (values: any) => {
-  console.log("Form submitted with values:", values);
   const response = await flightStore.createBooking({
     user_id: userData?.id,
     flight_id: +route.params.id,
@@ -98,8 +99,8 @@ const onSubmit = handleSubmit(async (values: any) => {
       flightData.value?.departure_date
     ),
   });
-  console.log(response);
 });
+// Fetch flight data based on route params
 const getData = () => {
   flightData.value = flightStore.getFlightById(+route.params.id);
   resetForm({
@@ -121,6 +122,7 @@ onMounted(() =>
     getData();
   })
 );
+// Update price when selectedSeat changes
 watch(
   () => selectedSeat.value,
   (newSeat) => {

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// emits and props for parent communication
 const emit = defineEmits(["closeModal", "update:visible", "logout"]);
 
 const props = defineProps({
@@ -7,12 +8,14 @@ const props = defineProps({
     required: true,
   },
 });
+
+// stores and refs
 const store = useOnboardingStore();
 const { getLoginUser: userData } = storeToRefs(store);
+// Varables and composables
 const route = useRoute();
 const router = useRouter();
 const { t } = useI18n();
-
 const localePath = useLocalePath();
 
 const drawerVisible = computed({
@@ -29,17 +32,11 @@ const closeDrawer = () => {
   drawerVisible.value = false;
 };
 
-watch(userData, async (newVal) => {
-  // if (newVal?.user?.id) {
-  //   await accountStore.getProfile();
-  // } else {
-  //   systemStore.setMenuOpen(false);
-  // }
-});
 </script>
 
 <template>
   <div>
+    <!-- Mobile Menu Drawer -->
     <Drawer
       v-model:visible="drawerVisible"
       :dismissable="true"
@@ -60,7 +57,7 @@ watch(userData, async (newVal) => {
         <i class="pi pi-times" style="color: #003b71" @click="closeDrawer"></i>
       </template>
       <div class="menu-mobile">
-
+        <!-- Menu Links with validation for roles -->
         <nuxt-link
           v-if="userData.rol === 'admin'"
           class="link"
@@ -110,6 +107,7 @@ watch(userData, async (newVal) => {
         />
       </div>
       <div class="tw-flex tw-justify-center ">
+        <!-- Language Switcher -->
         <GeneralLanguageSwitcher />
       </div>
 

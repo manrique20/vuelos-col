@@ -1,13 +1,19 @@
 import { defineStore } from "pinia";
 import flightsData from "../mock/data.json";
 import type { User } from "~/interfaces/User.interface";
-
+/**
+ * This store manages user authentication, including login, registration, and logout functionalities.
+ * It handles user state, including the current authenticated user and a list of customers.
+ * The store provides actions for logging in, registering new users, and logging out.
+ * It also includes getters to check authentication status and user roles.
+ */
 export const useAuthStore = defineStore("auth", {
   state: () => ({
     currentUser: null as Omit<User, "password"> | null,
     customers: flightsData.users, 
   }),
   actions: {
+    // Simulated login function
     login(email: string, password: string) {
       const customers = this.customers;
 
@@ -37,6 +43,7 @@ export const useAuthStore = defineStore("auth", {
 
       return userWithoutPassword;
     },
+    // Simulated registration function
     register(userData: {
       email: string;
       password: string;
@@ -95,10 +102,8 @@ export const useAuthStore = defineStore("auth", {
       return (role: string) => state.currentUser?.rol === role;
     },
   },
-
   persist: {
     storage: piniaPluginPersistedstate.localStorage(),
-
     paths: ["customers"],
   },
 });
