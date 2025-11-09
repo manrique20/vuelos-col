@@ -142,7 +142,8 @@ export default {
   text: {
     login: "Please enter your email address",
     return: "Return",
-    form: 'Passenger data form'
+    form: 'Passenger data form',
+    languages: "Languages",
   },
   table: {
     empty: {

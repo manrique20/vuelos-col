@@ -17,11 +17,11 @@ const currentLocale = computed(() => {
     (l: any) => l.code === locale.value
   ) as LocaleOption;
 });
-
+const {t} = useI18n();
 const menuItems = computed(() => {
   return [
     {
-      label: "Idiomas",
+      label: t("text.languages"),
       items: locales.value.map((locale: LocaleOption) => ({
         label: locale.name,
         icon: "pi pi-globe",
