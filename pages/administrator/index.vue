@@ -15,6 +15,7 @@ const data = ref(flights.value);
 const offset = ref(0);
 const tabValue = ref("0");
 const route = useRoute();
+// Table configuration
 const table = ref<TableFields>({
   headers: [
     {
@@ -96,6 +97,7 @@ const tableBookings = ref<TableFields>({
   limit: 0,
   pages: 0,
 });
+// Redirect non-admin users and set initial tab on mount
 onMounted(() => {
   nextTick(() => {
     if (userData.value?.rol !== "admin") {
@@ -104,6 +106,7 @@ onMounted(() => {
     tabValue.value = (route.query.tab as string) || "0";
   });
 });
+// Update URL query parameter when tab changes
 watch(
   () => tabValue.value,
   (newTab) => {
@@ -118,6 +121,7 @@ watch(
 </script>
 <template>
   <section class="content-page">
+    <!-- Tabs for Flights and Bookings -->
     <Tabs v-model:value="tabValue">
       <TabList>
         <Tab value="0">Vuelos</Tab>

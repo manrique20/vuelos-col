@@ -7,7 +7,14 @@ import type {
   SearchParams,
   CreateBookingParams,
 } from "../../interfaces/Flights.interface";
-
+/**
+ * This store manages flight data, including searching for flights, bookings and more
+ * This is the center of the flight search and booking logic
+ * It includes methods for searching flights based on user criteria, calculating prices,
+ * creating bookings, and retrieving flight and booking information
+ * It also handles loading states and error management for a smooth user experience
+ * The store persists flight and booking data in local storage to maintain state across sessions
+ */
 export const useFlightStore = defineStore(
   "flight",
   () => {
