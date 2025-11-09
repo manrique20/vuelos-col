@@ -142,7 +142,8 @@ export default {
   text: {
     login: "Por favor digita tu correo electrónico",
     return: "Volver",
-    form: 'Formulario de datos del pasajero'
+    form: 'Formulario de datos del pasajero',
+    languages: "Idiomas",
   },
   table: {
     empty: {
