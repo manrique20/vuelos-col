@@ -29,7 +29,7 @@
     }
   }
   .bg-container-password {
-    @apply tw-z-10 tw-absolute tw-w-full tw-pl-[350px] tw-max-w-[75%] tw-h-full tw-bg-[#003676];
+    @apply tw-z-10 tw-absolute tw-w-full tw-pl-[350px] tw-max-w-[75%] tw-h-full tw-bg-[#003676] lg:tw-fixed;
     clip-path: polygon(4.55% 0, 100% 0, 100% 100%, 0 100%);
     right: 0;
     z-index: 2;
@@ -42,7 +42,7 @@
     }
   }
   .card-login-container {
-    @apply tw-relative tw-ml-auto lg:tw-h-screen tw-w-3/4 tw-bg-transparent tw-bg-no-repeat tw-bg-cover tw-bg-center tw-p-16;
+    @apply tw-relative tw-ml-auto lg:tw-h-full tw-w-3/4 tw-bg-transparent tw-bg-no-repeat tw-bg-cover tw-bg-center tw-p-16;
     @apply max-lg:tw-p-[30px] max-lg:tw-w-full max-lg:tw-min-h-[452px] max-lg:tw-pb-0;
     z-index: 3;
     .card-login {
