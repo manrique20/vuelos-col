@@ -42,7 +42,7 @@
     }
   }
   .card-login-container {
-    @apply   tw-ml-auto lg:tw-h-full lg:tw-min-h-screen tw-w-3/4 tw-bg-transparent tw-bg-no-repeat tw-bg-cover tw-bg-center tw-p-16;
+    @apply  lg:tw-relative tw-ml-auto lg:tw-h-full lg:tw-min-h-screen tw-w-3/4 tw-bg-transparent tw-bg-no-repeat tw-bg-cover tw-bg-center tw-p-16;
     @apply max-lg:tw-p-[30px] max-lg:tw-w-full max-lg:tw-min-h-[452px] max-lg:tw-pb-0;
     z-index: 3;
     .card-login {
