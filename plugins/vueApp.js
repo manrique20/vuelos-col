@@ -6,6 +6,5 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component("infinite-loading", InfiniteLoading);
 
   nuxtApp.hook("app:beforeMount", async () => {
-    await generateAccessToken();
   });
 });

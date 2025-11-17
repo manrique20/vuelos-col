@@ -4,7 +4,7 @@ import { toTypedSchema } from "@vee-validate/zod";
 import { z } from "zod";
 const emit = defineEmits(["change"]);
 
-const authStore = useAuthStore(); 
+const onboardingStore = useOnboardingStore();
 const { t } = useI18n();
 const localePath = useLocalePath();
 const router = useRouter();
@@ -75,20 +75,25 @@ const onSubmit = handleSubmit(async (values: any) => {
       password: password.value,
       name: name.value,
       surname: surname.value,
-      cellphone: `57${phone.value}`, 
+      cellphone: `57${phone.value}`,
       document_type: documentType.value,
       document_number: documentNumber.value,
     };
 
-    const newUser = authStore.register(userData);
-    
-    useShowAlert({
-      type: "success",
-      message: "Usuario registrado exitosamente",
-    });
-    
-    await router.push(localePath({name: 'login'}));
-    
+    const response = await onboardingStore.register(userData);
+
+    if (response.status && response.code === 100) {
+      useShowAlert({
+        type: "success",
+        message: "Usuario registrado exitosamente",
+      });
+      await router.push(localePath({ name: "login" }));
+    } else {
+      useShowAlert({
+        type: "error",
+        message: response.response.error || "Error al registrar el usuario",
+      });
+    }
   } catch (error: any) {
     useShowAlert({
       type: "error",
@@ -97,7 +102,6 @@ const onSubmit = handleSubmit(async (values: any) => {
   } finally {
     useLoading(false);
   }
-
 });
 const validateErrors = (input: string, text: string) => {
   let validate = false;

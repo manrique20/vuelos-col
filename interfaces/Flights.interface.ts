@@ -2,9 +2,9 @@ export interface Flight {
   id: number;
   flight_number: string;
   origin: string;
-  origin_city: string;
+  origin_code: string;
   destiny: string;
-  destiny_city: string;
+  destiny_code: string;
   departure_date: string;
   departure_hour: string;
   arrival_date: string;
