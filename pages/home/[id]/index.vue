@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import flightsData from "../../../composables/mock/data.json";
 import { useField, useForm } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/zod";
 import { z } from "zod";
 const route = useRoute();
 const localePath = useLocalePath();
 const router = useRouter();
-const flights = ref<Flight[]>(flightsData.flights);
 const flightStore = useFlightStore();
+const bookingStore = useBookingStore();
+const flightsStore = useFlightsStore();
 const onboardingStore = useOnboardingStore();
 const { getLoginUser: userData } = onboardingStore;
+const { getFlightDetails: flightData } = storeToRefs(flightsStore);
 const { t } = useI18n();
-const flightData = ref();
 // Form setup and validation
 const { handleSubmit, errors, meta, resetForm } = useForm({
   validationSchema: toTypedSchema(
@@ -85,24 +85,33 @@ const documents = ref([
 ]);
 // Form submission
 const onSubmit = handleSubmit(async (values: any) => {
-  const response = await flightStore.createBooking({
-    user_id: userData?.id,
-    flight_id: +route.params.id,
-    name: values.name,
-    surname: values.surname,
-    document_number: values.document,
-    document_type: values.documentType,
-    seats_count: values.selectedSeat,
-    total_price: values.price,
-    price_per_seat: flightStore.calculateFinalPrice(
-      flightData.value?.base_price,
-      flightData.value?.departure_date
-    ),
-  });
+  const sendData = {
+    userId: userData?.id,
+    flightId: +route.params.id,
+    reservationDate: useFormatDate(new Date().toISOString(), "date-send"),
+    seatQuantity: values.selectedSeat,
+    totalPrice: values.price,
+  };
+  const response = await bookingStore.createBooking(sendData);
+  if (response.status && response.code === 100) {
+    useShowAlert({
+      type: "success",
+      message:
+        "Confiramación exitosa. Su código de reserva es " +
+        response.data.data.reservationCode,
+    });
+    router.push(localePath({ name: "my-reservations" }));
+  } else {
+    useShowAlert({
+      type: "error",
+      message: response.error.message || "Error al realizar la compra",
+    });
+  }
 });
 // Fetch flight data based on route params
-const getData = () => {
-  flightData.value = flightStore.getFlightById(+route.params.id);
+const getData = async () => {
+  await flightsStore.getFlightById(+route.params.id);
+
   resetForm({
     values: {
       selectedFlight: flightData.value?.flight_number,
@@ -139,6 +148,7 @@ watch(
 
 <template>
   <div class="content-page">
+    {{ flightData }}
     <form
       class="bg-white shadow-2xl rounded-2xl lg:tw-p-8 max-lg:tw-p-4 w-full max-w-sm border border-gray-200"
       @submit.prevent="onSubmit"

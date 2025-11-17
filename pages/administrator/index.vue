@@ -3,15 +3,16 @@ import { storeToRefs } from "pinia";
 
 import type { TableFields } from "~/interfaces/Table.interface";
 
-const flightSearchStore = useFlightStore();
-const { flights, bookings } = storeToRefs(flightSearchStore);
+const flightStore = useFlightsStore();
+const bookingStore = useBookingStore();
+const { getAllFlights: data } = storeToRefs(flightStore);
+const { allBookings: bookings } = storeToRefs(bookingStore);
 const { t } = useI18n();
 const router = useRouter();
 const localePath = useLocalePath();
 
 const onboardingStore = useOnboardingStore();
 const { getLoginUser: userData } = storeToRefs(onboardingStore);
-const data = ref(flights.value);
 const offset = ref(0);
 const tabValue = ref("0");
 const route = useRoute();
@@ -57,53 +58,58 @@ const table = ref<TableFields>({
 const tableBookings = ref<TableFields>({
   headers: [
     {
-      field: "flight_id",
+      field: "reservationCode",
       header: t("table.flightId"),
     },
     {
-      field: "user_id",
+      field: "user.id",
       header: t("table.userId"),
     },
     {
-      field: "name",
+      field: "user.name",
       header: t("table.name"),
     },
     {
-      field: "surname",
+      field: "user.surname",
       header: t("table.surname"),
     },
     {
-      field: "document_number",
+      field: "user.document_number",
       header: t("table.document_number"),
     },
     {
-      field: "booking_date",
+      field: "reservationDate",
       header: t("table.booking_date"),
       type: "date",
     },
     {
-      field: "seats_count",
+      field: "seatQuantity",
       header: t("table.seats_count"),
     },
     {
-      field: "total_price",
+      field: "totalPrice",
       header: t("table.total_price"),
       type: "price",
     },
-
   ],
   empty: "",
   loading: false,
   limit: 0,
   pages: 0,
 });
-// Redirect non-admin users and set initial tab on mount
+const getAllData = async () => {
+  useLoading(true);
+  await flightStore.fetchAllFlights();
+  await bookingStore.getBookings();
+  useLoading(false);
+};
 onMounted(() => {
   nextTick(() => {
     if (userData.value?.rol !== "admin") {
       router.push(localePath({ name: "home" }));
     }
     tabValue.value = (route.query.tab as string) || "0";
+    getAllData()
   });
 });
 // Update URL query parameter when tab changes
