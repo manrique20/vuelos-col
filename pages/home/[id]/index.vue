@@ -148,7 +148,6 @@ watch(
 
 <template>
   <div class="content-page">
-    {{ flightData }}
     <form
       class="bg-white shadow-2xl rounded-2xl lg:tw-p-8 max-lg:tw-p-4 w-full max-w-sm border border-gray-200"
       @submit.prevent="onSubmit"

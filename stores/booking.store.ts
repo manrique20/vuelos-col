@@ -2,10 +2,12 @@ import { defineStore } from "pinia";
 import type { Bookings } from "~/interfaces/Booking.interface";
 interface State {
   bookings?: Array<Bookings>;
+  booking: Bookings;
 }
 export const useBookingStore = defineStore("booking", {
   state: (): State => ({
     bookings: [],
+    booking: {} as Bookings,
   }),
   actions: {
     async createBooking(params: object) {
@@ -44,8 +46,28 @@ export const useBookingStore = defineStore("booking", {
         throw error;
       }
     },
+    async getBookingByUserId(userId: string) {
+      try {
+        const response = await fetch(`http://localhost:3000/booking/user/${userId}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        if (data.status && data?.code === 100) {
+          this.booking = data?.data as Bookings;
+        }
+      } catch (error) {
+        console.error("Error fetching bookings:", error);
+        throw error;
+      }
+    },
   },
   getters: {
+    getOneBooking(state): Bookings {
+      return state.booking;
+    },
     allBookings(state): Array<any> | undefined {
       return state.bookings;
     },
