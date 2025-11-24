@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Status } from '~/interfaces/Enums.interface'
 const emit = defineEmits(['changeStatus'])
-const flightStore = useFlightStore()
+const flightStore = useFlightsStore()
 const { t } = useI18n()
 const props = defineProps({
   id: {
@@ -21,8 +21,8 @@ const statusList = Object.entries(Status).map(([key, value]) => ({
 
 const statusSelected = ref(props.status)
 
-const changeStatus = () => {
-  flightStore.changeFlightStatus(Number(props.id), statusSelected.value as 'active' | 'inactive')
+const changeStatus = async () => {
+  await flightStore.changeFlightStatus({ status: statusSelected.value }, Number(props.id))
   emit('changeStatus', statusSelected.value)
 }
 

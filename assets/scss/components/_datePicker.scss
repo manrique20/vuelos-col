@@ -37,4 +37,11 @@
       }
     }
   }
+  &.form{
+  label {
+    color: $color-white;
+    font-family: "arial-bold";
+    font-size: $font-size-13;
+  }
+  }
 }

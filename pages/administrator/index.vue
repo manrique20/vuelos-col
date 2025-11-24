@@ -143,6 +143,7 @@ watch(
             :limit="table.limit"
             :offset="offset"
             :pages="table.pages"
+            @reload="getAllData"
           />
         </TabPanel>
         <TabPanel value="1">

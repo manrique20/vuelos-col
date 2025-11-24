@@ -42,19 +42,28 @@ const validatePassword = computed(() => {
 const onSubmit = handleSubmit(async (values: any) => {
   useLoading(true);
 
-  try {
-    const response = await onboardingStore.login({ email: values.email, password: values.password });
-    console.log("Usuario logueado:", response.data);
-
+  const response = await onboardingStore.login({
+    email: values.email,
+    password: values.password,
+  });
+  if (response.status && response.code === 100) {
+    useShowAlert({
+      type: "success",
+      message: response.message,
+    });
     if (response.data.rol === "admin") {
       await router.push(localePath({ name: "administrator" }));
     } else {
       await router.push(localePath({ name: "home", query: route.query }));
     }
-  } catch (error: any) {
-  } finally {
-    useLoading(false);
+  } else {
+    useShowAlert({
+      type: "error",
+      message: response.response.error,
+    });
   }
+  console.log(response);
+  useLoading(false);
 });
 </script>
 <template>
