@@ -3,6 +3,7 @@ import { useField, useForm } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/zod";
 import { z } from "zod";
 const { login } = useAuthStore();
+const onboardingStore = useOnboardingStore();
 const { t } = useI18n();
 const localePath = useLocalePath();
 const router = useRouter();
@@ -41,19 +42,28 @@ const validatePassword = computed(() => {
 const onSubmit = handleSubmit(async (values: any) => {
   useLoading(true);
 
-  try {
-    const user = await login(values.email, values.password);
-    console.log("Usuario logueado:", user);
-
-    if (user.rol === "admin") {
+  const response = await onboardingStore.login({
+    email: values.email,
+    password: values.password,
+  });
+  if (response.status && response.code === 100) {
+    useShowAlert({
+      type: "success",
+      message: response.message,
+    });
+    if (response.data.rol === "admin") {
       await router.push(localePath({ name: "administrator" }));
     } else {
       await router.push(localePath({ name: "home", query: route.query }));
     }
-  } catch (error: any) {
-  } finally {
-    useLoading(false);
+  } else {
+    useShowAlert({
+      type: "error",
+      message: response.response.error,
+    });
   }
+  console.log(response);
+  useLoading(false);
 });
 </script>
 <template>

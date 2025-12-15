@@ -182,6 +182,7 @@ export default {
     name: 'Nombre',
     surname: 'Apellido',
     document_number: 'Número de documento',
+    booking_id: 'ID de reserva',
     flightId: 'ID de vuelo',
     userId: 'ID de usuario',
     booking_date: 'Fecha de reserva',

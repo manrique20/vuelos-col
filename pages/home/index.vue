@@ -6,12 +6,14 @@ import { z } from "zod";
 /** Stores */
 const onboardingStore = useOnboardingStore();
 const flightStore = useFlightStore();
+const flightsStore = useFlightsStore();
 const { getLoginUser: userData } = onboardingStore;
 const { t } = useI18n();
 const localePath = useLocalePath();
 const router = useRouter();
 const route = useRoute();
-const { searchResults, isLoading, error } = storeToRefs(flightStore);
+const { getFlights: searchResults } = storeToRefs(flightsStore);
+const { isLoading, error } = storeToRefs(flightStore);
 // Form validation schema
 const { handleSubmit, errors, meta, resetForm, values } = useForm({
   validationSchema: toTypedSchema(
@@ -64,12 +66,18 @@ const onSubmit = handleSubmit(async (values: any) => {
       arrivalDate: useFormatDate(values.arrivalDate.toISOString(), "date-send"),
     },
   });
-  const results = await flightStore.searchFlights({
-    selectedOriginCity: values.selectedOriginCity,
-    selectedDestinationCity: values.selectedDestinationCity,
-    departureDate: values.departureDate,
-    arrivalDate: values.arrivalDate,
+
+  const response = await flightsStore.fetchFlights({
+    origin: values.selectedOriginCity,
+    destination: values.selectedDestinationCity,
+    departureDate: useFormatDate(
+      values.departureDate.toISOString(),
+      "date-send"
+    ),
+    arrivalDate: useFormatDate(values.arrivalDate.toISOString(), "date-send"),
   });
+  console.log(response);
+
   showResults.value = true;
 });
 // Redirect to flight details with query params
@@ -293,10 +301,10 @@ onMounted(() => {
                         {{ useFormatDate(flight.departure_hour, "only-hour") }}
                       </div>
                       <div class="tw-text-sm tw-text-gray-600">
-                        {{ flight.origin }}
+                        {{ flight.origin_code }}
                       </div>
                       <div class="tw-text-xs tw-text-gray-500">
-                        {{ flight.origin_city }}
+                        {{ flight.origin }}
                       </div>
                     </div>
 
@@ -310,10 +318,10 @@ onMounted(() => {
                         {{ useFormatDate(flight.arrival_hour, "only-hour") }}
                       </div>
                       <div class="tw-text-sm tw-text-gray-600">
-                        {{ flight.destiny }}
+                        {{ flight.destiny_code }}
                       </div>
                       <div class="tw-text-xs tw-text-gray-500">
-                        {{ flight.destiny_city }}
+                        {{ flight.destiny }}
                       </div>
                     </div>
                   </div>

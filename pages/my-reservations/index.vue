@@ -1,37 +1,41 @@
 <script setup lang="ts">
 import type { TableFields } from "~/interfaces/Table.interface";
 /** Stores */
-const flightStore = useFlightStore();
+const bookingStore = useBookingStore();
 const onboardingStore = useOnboardingStore();
 const { getLoginUser: userData } = storeToRefs(onboardingStore);
-const bookingsData = ref();
+const {getOneBooking: bookingData} = storeToRefs(bookingStore);
 const { t } = useI18n();
 const router = useRouter();
 const table = ref<TableFields>({
   headers: [
     {
-      field: "name",
+      field: "reservationCode",
+      header: t("table.booking_id"),
+    },
+    {
+      field: "user.name",
       header: t("table.name"),
     },
     {
-      field: "surname",
+      field: "user.surname",
       header: t("table.surname"),
     },
     {
-      field: "document_number",
+      field: "user.document_number",
       header: t("table.document_number"),
     },
     {
-      field: "booking_date",
+      field: "reservationDate",
       header: t("table.booking_date"),
       type: "date",
     },
     {
-      field: "seats_count",
+      field: "seatQuantity",
       header: t("table.seats_count"),
     },
     {
-      field: "total_price",
+      field: "totalPrice",
       header: t("table.total_price"),
       type: "price",
     },
@@ -43,10 +47,9 @@ const table = ref<TableFields>({
   pages: 0,
 });
 onMounted(() => {
-  nextTick(() => {
+  nextTick(async () => {
     if (!userData.value?.id) router.push({ name: "login" });
-    const response = flightStore.getBookingsByUserId(userData.value?.id);
-    bookingsData.value = response;
+    const response = await bookingStore.getBookingByUserId(userData.value?.id);
   });
 });
 </script>
@@ -54,7 +57,7 @@ onMounted(() => {
   <section class="content-page">
     <GeneralTable
       :headers="table.headers"
-      :fields="bookingsData"
+      :fields="bookingData"
       :empty="table.empty"
       :loading="table.loading"
       :limit="table.limit"

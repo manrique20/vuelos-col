@@ -9,6 +9,7 @@ const emit = defineEmits([
   "change-sortable",
   "reload",
   "accept-reject",
+  "reload",
 ]);
 
 /** props */

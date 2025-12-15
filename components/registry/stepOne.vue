@@ -4,7 +4,7 @@ import { toTypedSchema } from "@vee-validate/zod";
 import { z } from "zod";
 const emit = defineEmits(["change"]);
 
-const authStore = useAuthStore(); 
+const onboardingStore = useOnboardingStore();
 const { t } = useI18n();
 const localePath = useLocalePath();
 const router = useRouter();
@@ -29,6 +29,7 @@ const { handleSubmit, errors, meta, errorBag, values } = useForm({
       documentNumber: z
         .string({ message: t("rule.validation.require") })
         .min(1, { message: t("rule.validation.require") }),
+      birthDate: z.date({ message: t("rule.validation.require") }),
       email: z
         .string({ message: t("rule.validation.require") })
         .email({ message: t("rule.validation.email") })
@@ -56,6 +57,7 @@ const iconPassword = ref(false);
 const iconPasswordConfirm = ref(false);
 const { value: phone } = useField<string>("phone");
 const { value: name } = useField<string>("name");
+const { value: birthDate } = useField<Date>("birthDate");
 const { value: surname } = useField<string>("surname");
 const { value: documentType } = useField<string>("documentType", undefined, {
   initialValue: "CC",
@@ -68,36 +70,34 @@ const { value: confirmPassword } = useField<string>("confirmPassword");
 // methods
 
 const onSubmit = handleSubmit(async (values: any) => {
-  try {
-    useLoading(true);
-    const userData = {
-      email: email.value,
-      password: password.value,
-      name: name.value,
-      surname: surname.value,
-      cellphone: `57${phone.value}`, 
-      document_type: documentType.value,
-      document_number: documentNumber.value,
-    };
+  useLoading(true);
+  const userData = {
+    email: email.value,
+    password: password.value,
+    name: name.value,
+    surname: surname.value,
+    cellphone: `57${phone.value}`,
+    document_type: documentType.value,
+    document_number: documentNumber.value,
+    birthdate: useFormatDate(birthDate.value.toISOString(), "date-send"),
+  };
 
-    const newUser = authStore.register(userData);
-    
+  const response = await onboardingStore.register(userData);
+
+  if (response.status && response.code === 100) {
     useShowAlert({
       type: "success",
       message: "Usuario registrado exitosamente",
     });
-    
-    await router.push(localePath({name: 'login'}));
-    
-  } catch (error: any) {
+    await router.push(localePath({ name: "login" }));
+  } else {
     useShowAlert({
       type: "error",
-      message: error.message || "Error al registrar el usuario",
+      message: response.response.error || "Error al registrar el usuario",
     });
-  } finally {
-    useLoading(false);
   }
 
+  useLoading(false);
 });
 const validateErrors = (input: string, text: string) => {
   let validate = false;
@@ -243,6 +243,19 @@ const getValidationIcon = (field: string, errorType?: string) => {
             </InputGroup>
           </div>
           <GeneralInputError :error="errors['document']" />
+        </span>
+        <span class="general-date form">
+          <label>Fecha de nacimiento</label>
+          <DatePicker
+            v-model="birthDate"
+            dateFormat="dd/mm/yy"
+            :placeholder="t('form.departureDate.placeholder')"
+            :maxDate="new Date()"
+            showIcon
+            fluid
+          >
+          </DatePicker>
+          <GeneralInputError :error="errors['birthDate']" />
         </span>
         <span class="general-input solo-login my-4">
           <label for="password">

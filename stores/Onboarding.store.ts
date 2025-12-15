@@ -17,17 +17,26 @@ export const useOnboardingStore = defineStore("onboarding", {
   }),
   actions: {
     async login(form: object) {
-      const result = await useApiServices({
-        method: "POST",
-        url: "onboarding/login",
-        data: form,
-      });
+      try {
+        const response = await fetch("http://localhost:3000/users/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+        });
 
-      if (result?.status && result.code === 100) {
-        setLoginUser(result?.data);
+        const data = await response.json();
+        console.log(data);
+
+        if (data?.status && data?.code === 100) {
+          setLoginUser(data?.data);
+        }
+        return data;
+      } catch (error) {
+        console.error("Error fetching flights:", error);
+        throw error;
       }
-
-      return result;
     },
     async logout() {
       const result = await useApiServices({
@@ -39,6 +48,28 @@ export const useOnboardingStore = defineStore("onboarding", {
       setLoginUser({ user: undefined, authToken: undefined });
 
       return result;
+    },
+    async register(form: object) {
+      try {
+        const response = await fetch("http://localhost:3000/users/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+        if (data?.status && data?.code === 100) {
+          setLoginUser(data?.data);
+        }
+        return data;
+      } catch (error) {
+        console.error("Error fetching flights:", error);
+        throw error;
+      }
     },
   },
   getters: {
